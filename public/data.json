@@ -1,0 +1,146 @@
+[
+    {
+        "id": "1",
+        "imageUrl": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
+        "jobTitle": "Frontend Developer",
+        "companyName": "Google LLC",
+        "options": [
+            "Remote",
+            "Full Time"
+        ],
+        "location": "San Francisco, CA",
+        "salary": "$80,000 - $100,000",
+        "jobDescription": "We are seeking a skilled Frontend Developer to join our team and help build responsive, user-friendly web applications.",
+        "jobResponsibility": "Design and develop web applications using HTML, CSS, and JavaScript. Collaborate with designers and backend developers to create seamless user experiences.",
+        "educationalRequirements": "Bachelor's degree in Computer Science or related field.",
+        "experiences": "Minimum of 3 years of experience in frontend development.",
+        "phone": "555-123-4567",
+        "email": "jobs@google.com"
+    },
+    {
+        "id": "2",
+        "imageUrl": "https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2016.ico",
+        "jobTitle": "Marketing Manager",
+        "companyName": "Netflix Inc.",
+        "options": [
+            "Remote",
+            "Part Time"
+        ],
+        "location": "New York, NY",
+        "salary": "$90,000 - $110,000",
+        "jobDescription": "We are seeking a talented Marketing Manager to lead our team in creating effective marketing campaigns and building brand awareness.",
+        "jobResponsibility": "Develop and execute marketing campaigns across multiple channels. Analyze campaign data and adjust strategies as needed. Manage team of marketing specialists.",
+        "educationalRequirements": "Bachelor's degree in Marketing or related field.",
+        "experiences": "Minimum of 5 years of experience in marketing, with at least 2 years in a management role.",
+        "phone": "555-234-5678",
+        "email": "jobs@netflix.com"
+    },
+    {
+        "id": "3",
+        "imageUrl": "https://cdn.pixabay.com/photo/2021/11/01/15/20/meta-logo-6760788_1280.png",
+        "jobTitle": "Data Analyst",
+        "companyName": "Meta Inc.",
+        "options": [
+            "On Site",
+            "Full Time"
+        ],
+        "location": "Seattle, WA",
+        "salary": "$70,000 - $90,000",
+        "jobDescription": "We are seeking a detail-oriented Data Analyst to analyze and interpret complex data sets and provide insights to our team.",
+        "jobResponsibility": "Collect and analyze data to identify patterns and trends. Develop data visualizations and dashboards to communicate insights to stakeholders. Collaborate with cross-functional teams to develop data-driven solutions.",
+        "educationalRequirements": "Bachelor's degree in Mathematics, Statistics, Computer Science, or related field.",
+        "experiences": "Minimum of 2 years of experience in data analysis.",
+        "phone": "555-345-6789",
+        "email": "jobs@meta.com"
+    },
+    {
+        "id": "4",
+        "imageUrl": "https://static.vecteezy.com/system/resources/previews/019/550/793/original/tesla-logo-free-download-free-vector.jpg",
+        "jobTitle": "Graphic Designer",
+        "companyName": "Tesla",
+        "options": [
+            "On Site",
+            "Full Time"
+        ],
+        "location": "Dhaka, Bangladesh",
+        "salary": "$60,000 - $80,000",
+        "jobDescription": "We are seeking a creative and talented Graphic Designer to produce engaging visual content for our clients and help elevate their brand identities.",
+        "jobResponsibility": "Design and produce visual content for a variety of mediums, including print and digital. Collaborate with clients and project managers to develop creative concepts and strategies. Stay up-to-date with industry trends and techniques.",
+        "educationalRequirements": "Bachelor's degree in Graphic Design or related field.",
+        "experiences": "Minimum of 3 years of experience in graphic design, with a strong portfolio showcasing design skills.",
+        "phone": "555-456-7890",
+        "email": "jobs@tesla.com"
+    },
+    {
+        "id": "5",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Upwork-logo.svg/2560px-Upwork-logo.svg.png",
+        "jobTitle": "Accountant",
+        "companyName": "Upwork Inc.",
+        "options": [
+            "Remote",
+            "Part Time"
+        ],
+        "location": "Boston, MA",
+        "salary": "$70,000 - $90,000",
+        "jobDescription": "We are seeking a detail-oriented Accountant to join our team and assist with financial reporting and analysis.",
+        "jobResponsibility": "Prepare and maintain financial statements and reports. Analyze financial data and develop forecasts. Ensure compliance with accounting standards and regulations.",
+        "educationalRequirements": "Bachelor's degree in Accounting or related field, and CPA certification preferred.",
+        "experiences": "Minimum of 5 years of experience in accounting, with knowledge of GAAP and financial reporting requirements.",
+        "phone": "555-567-8901",
+        "email": "jobs@upwork.com"
+    },
+    {
+        "id": "6",
+        "imageUrl": "https://1000logos.net/wp-content/uploads/2021/11/Fiverr-Logo.png",
+        "jobTitle": "Sales Representative",
+        "companyName": "Fiverr",
+        "options": [
+            "Remote",
+            "Full Time"
+        ],
+        "location": "Austin, TX",
+        "salary": "$50,000 - $70,000 + commission",
+        "jobDescription": "We are seeking a motivated Sales Representative to generate new business and maintain relationships with existing clients.",
+        "jobResponsibility": "Identify and pursue new business opportunities. Build and maintain strong relationships with clients. Meet or exceed sales quotas.",
+        "educationalRequirements": "Bachelor's degree in Business, Marketing, or related field.",
+        "experiences": "Minimum of 2 years of experience in sales, with a track record of meeting or exceeding sales quotas.",
+        "phone": "555-678-9012",
+        "email": "jobs@fiverr.com"
+    },
+    {
+        "id": "7",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/5968/5968753.png",
+        "jobTitle": "Human Resources Manager",
+        "companyName": "WIX",
+        "options": [
+            "On Site",
+            "Part Time"
+        ],
+        "location": "Denver, CO",
+        "salary": "$80,000 - $100,000",
+        "jobDescription": "We are seeking an experienced Human Resources Manager to oversee all aspects of HR operations and ensure compliance with legal requirements.",
+        "jobResponsibility": "Develop and implement HR policies and procedures. Manage employee relations and investigations. Oversee recruitment and retention efforts.",
+        "educationalRequirements": "Bachelor's degree in Human Resources, Business Administration, or related field.",
+        "experiences": "Minimum of 7 years of experience in HR, with at least 2 years in a management role.",
+        "phone": "555-789-0123",
+        "email": "jobs@wix.com"
+    },
+    {
+        "id": "8",
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/25/25231.png",
+        "jobTitle": "Software Engineer",
+        "companyName": "GitHub",
+        "options": [
+            "On Site",
+            "Full Time"
+        ],
+        "location": "San Francisco, CA",
+        "salary": "$100,000 - $120,000",
+        "jobDescription": "We are seeking a talented Software Engineer to join our team and develop innovative software solutions.",
+        "jobResponsibility": "Design and develop software applications. Collaborate with cross-functional teams to identify and solve complex problems. Stay up-to-date with industry trends and best practices.",
+        "educationalRequirements": "Bachelor's degree in Computer Science or related field.",
+        "experiences": "Minimum of 5 years of experience in software development, with expertise in multiple programming languages.",
+        "phone": "555-890-1234",
+        "email": "jobs@github.com"
+    }
+]
