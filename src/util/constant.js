@@ -1,3 +1,3 @@
 export const PAGINATION = {
-    pagerow: 5
+    pagerow: 6
 }

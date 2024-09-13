@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
 import RightContent from './RightPage/RightContent'
@@ -10,8 +10,6 @@ import ReactPaginate from 'react-paginate';
 import { getListPostService } from '../../service/userService'
 import CommonUtils from '../../util/CommonUtils';
 const AllJobs = () => {
-    const data = useLoaderData();
-    const [jobs, setJobs] = React.useState([]);
 
     const [countPage, setCountPage] = useState(1)
     const [post, setPost] = useState([])
@@ -27,7 +25,9 @@ const AllJobs = () => {
     const [jobLevel, setJobLevel] = useState([])
     const [jobLocation, setJobLocation] = useState('')
     const [search,setSearch] = useState('')
-    let loadPost = async (limit, offset, sortName) => {
+    const [loading, setLoading] = useState(false);
+
+    const loadPost = useCallback(async (limit, offset, sortName) => {
         let params = {
             limit: limit,
             offset: offset,
@@ -40,17 +40,26 @@ const AllJobs = () => {
             sortName: sortName,
             search : CommonUtils.removeSpace(search)
         }
-        let arrData = await getListPostService(params)
-        if (arrData && arrData.errCode === 0) {
-            setPost(arrData.data)
-            setCountPage(Math.ceil(arrData.count / limit))
-            setCount(arrData.count)
+        setLoading(true);
+        try {
+            const response = await getListPostService(params);
+            if (response && response.errCode === 0) {
+                setPost(response.data);
+                setCountPage(Math.ceil(response.count / limit));
+                setCount(response.count);
+            } else {
+                console.error('Failed to fetch posts:', response.message);
+            }
+        } catch (error) {
+            console.error('An error occurred while fetching posts:', error);
+        } finally {
+            setLoading(false);
         }
-    }
+    })
 
-    const handleSearch = (value) => {
-        setSearch(value)
-    }
+    const handleSearch = useCallback((value) => {
+        setSearch(value);
+    }, []);
     const recieveWorkType = (data) => {
         setWorkType(prev => {
             let isCheck = workType.includes(data)
@@ -117,11 +126,12 @@ const AllJobs = () => {
         }
         filterdata()
     }, [workType, jobLevel, exp, jobType, jobLocation, salary, search])
-    const handleChangePage = (number) => {
-        setNumberPage(number.selected)
-        loadPost(limit, number.selected * limit)
-        setOffset(number.selected * limit)
-    }
+    const handleChangePage = useCallback((number) => {
+        const selectedPage = number.selected;
+        setNumberPage(selectedPage);
+        setOffset(selectedPage * limit);
+        loadPost(limit, selectedPage * limit);
+    }, [loadPost, limit]);
 
 
     return (
@@ -146,6 +156,10 @@ const AllJobs = () => {
             <div className='mt-8'>
 
             <div className="col-xl-9 col-lg-9 col-md-8">
+                {loading ? (
+                    <div>Loading...</div>
+                ) : (
+                    <>
                     <RightContent handleSearch={handleSearch} count={count} post={post}/>
                     <ReactPaginate
                         forcePage={numberPage}
@@ -166,6 +180,8 @@ const AllJobs = () => {
                         activeClassName="bg-[#9873ff] text-white"
                         onPageChange={handleChangePage}
                     />
+                    </>
+                    )}
             </div>
 
             </div>
