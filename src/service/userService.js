@@ -34,7 +34,10 @@ const getListPostService = (data) => {
     return axios.get(`/api/get-filter-post?limit=${data.limit}&offset=${data.offset}&categoryJobCode=${data.categoryJobCode}&addressCode=${data.addressCode}&salaryJobCode=${data.salaryJobCode}&categoryJoblevelCode=${data.categoryJoblevelCode}&categoryWorktypeCode=${data.categoryWorktypeCode}&experienceJobCode=${data.experienceJobCode}&sortName=${data.sortName}&search=${data.search}`)
 }
 
-
+const getDetailPostByIdService = (id) => {
+    return axios.get(`/api/get-detail-post-by-id?id=${id}`)
+}
 export {
-  getAllCodeService, getListPostService
+  getAllCodeService,
+    getListPostService,getDetailPostByIdService
 }

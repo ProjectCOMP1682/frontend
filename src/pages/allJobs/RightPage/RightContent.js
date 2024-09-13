@@ -34,7 +34,7 @@ const RightContent = (props) => {
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-4 mt-10'>
                     {props.post.map((data, index) => {
                         return (
-                            <Link to={`/detail-job/${data.id}`}>
+                            <Link to={`/job-details/${data.id}`}>
                                 <div class="single-job-items mb-30">
                                     <Job key={data.id} data={data} />
                                 </div>

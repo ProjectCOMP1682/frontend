@@ -41,7 +41,7 @@ const Job = (props) => {
                                     <BiTimeFive className='mr-2' /> Time: {handleSplitTime(props.data.timePost)}
                                 </p>
                             </div>
-                            <Link className='btn gradient-btn'to={`/detail-job/${props.data.postDetailData.id}`} >
+                            <Link className='btn gradient-btn'to={`/job-details/${props.data.id}`} >
                                 View Details
                             </Link>
                         </div>

@@ -64,7 +64,7 @@ const Footer = () => {
                 <div className='lg:flex justify-between items-center'>
                     <p className='text-gray-300 text-sm'>© 2024 JobFinder. All rights reserved.</p>
                     <p className='text-gray-300 text-sm'>
-                            Powered by ThanhSonGCD201619 
+                            Powered by ThanhSonGCD201619
                     </p>
                 </div>
             </div>
