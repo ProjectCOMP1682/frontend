@@ -11,7 +11,16 @@ const getListJobTypeAndCountPost = (data) => {
     return axios.get(`/api/get-list-job-count-post?limit=${data.limit}&offset=${data.offset}`)
 
 }
+//================================== COMPANY ============================
 
+const getListCompany = (data) => {
+    return axios.get(`/api/get-list-company?limit=${data.limit}&offset=${data.offset}&search=${data.search}`)
+
+}
+const getDetailCompanyById = (id) => {
+    return axios.get(`/api/get-detail-company-by-id?id=${id}`)
+
+}
 //======================== POST ====================================//
 
 const getListPostService = (data) => {
@@ -34,5 +43,6 @@ const getDetailPostByIdService = (id) => {
 
 export {
   getAllCodeService, getListJobTypeAndCountPost,
+    getListCompany, getDetailCompanyById,
     getListPostService,getDetailPostByIdService
 }

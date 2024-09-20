@@ -6,8 +6,9 @@ import {getDetailPostByIdService} from '../../service/userService'
 import moment from 'moment';
 import CommonUtils from '../../util/CommonUtils';
 import {BiDollarCircle} from "react-icons/bi";
+import {HiLocationMarker} from "react-icons/hi"
 import {BsCalendarWeek, BsTelephone} from "react-icons/bs";
-import { FaBriefcase,FaClipboardList,FaHashtag,FaClock,FaGenderless,FaMapMarkerAlt} from 'react-icons/fa';
+import { FaBriefcase,FaClipboardList,FaHashtag,FaClock,FaGenderless,FaMapMarkerAlt,FaBuilding,FaGlobe,FaFileInvoice,FaUsers } from 'react-icons/fa';
 
 
 const JobDetails = () => {
@@ -74,7 +75,6 @@ const JobDetails = () => {
 
                                     </p>
 
-
                                 </div>
                                 <div className='lg:w-1/3 w-full p-3'>
                                     <div className='bg-gray-100 linear-card p-5 mb-6'>
@@ -125,28 +125,52 @@ const JobDetails = () => {
                                                 <BsCalendarWeek className='mr-2'/> Deadline apply:</p>
                                             <p>{moment.unix(dataPost.timeEnd / 1000).format('DD/MM/YYYY')}</p>
                                         </div>
-
-                                        {/*<h3 className='text-xl font-bold mb-5 mt-8'>Contact Information</h3>*/}
-                                        {/*<hr />*/}
-                                        {/*<div className='flex justify-between items-center mt-5'>*/}
-                                        {/*    <p className='text-gradient font-bold flex justify-start items-center'><BsTelephone className='mr-2' /> Phone:</p>*/}
-                                        {/*    <p>{job.phone}</p>*/}
-                                        {/*</div>*/}
-                                        {/*<div className='flex justify-between items-center mt-2'>*/}
-                                        {/*    <p className='text-gradient font-bold flex justify-start items-center'><MdAttachEmail className='mr-2' /> Email:</p>*/}
-                                        {/*    <p>{job.email}</p>*/}
-                                        {/*</div>*/}
-                                        {/*<div className='flex justify-between items-center mt-2'>*/}
-                                        {/*    <p className='text-gradient font-bold flex justify-start items-center'><HiLocationMarker className='mr-2' /> Address:</p>*/}
-                                        {/*    <p>{job.location}</p>*/}
-                                        {/*</div>*/}
                                     </div>
 
-                                    <button className='btn w-full gradient-btn'>
+                                    <button className='btn w-full gradient-btn  '>
                                         Apply Now
                                     </button>
+
+                                    <div className='bg-gray-100 linear-card p-5 mb-6 mt-6'>
+                                        <h3 className='text-xl font-bold mb-5'>Company Information</h3>
+                                        <hr/>
+                                        <div className='flex justify-between items-center mt-5'>
+                                            <p className='text-gradient font-bold flex justify-start items-center'>
+                                                <FaBuilding  className='mr-2'/> Company Name:</p>
+                                            <p>{dataPost.companyData.name}</p>
+                                        </div>
+                                        <div className='flex justify-between items-center mt-2'>
+                                            <p className='text-gradient font-bold flex justify-start items-center'>
+                                                <FaGlobe className='mr-2'/> Website :</p>
+                                            <p>{dataPost.companyData.website}</p>
+                                        </div>
+                                        <div className='flex justify-between items-center mt-2'>
+                                            <p className='text-gradient font-bold flex justify-start items-center'>
+                                                <HiLocationMarker className='mr-2'/> Address :</p>
+                                            <p>{dataPost.companyData.address}</p>
+                                        </div>
+                                        <div className='flex justify-between items-center mt-2'>
+                                            <p className='text-gradient font-bold flex justify-start items-center'>
+                                                <BsTelephone className='mr-2'/> Phone :</p>
+                                            <p>{dataPost.companyData.phonenumber}</p>
+                                        </div>
+                                        <div className='flex justify-between items-center mt-2'>
+                                            <p className='text-gradient font-bold flex justify-start items-center'>
+                                                <FaFileInvoice className='mr-2'/> Tax code :</p>
+                                            <p>{dataPost.companyData.taxnumber}</p>
+                                        </div>
+                                        <div className='flex justify-between items-center mt-2'>
+                                            <p className='text-gradient font-bold flex justify-start items-center'>
+                                                <FaUsers className='mr-2'/> Number of employees :</p>
+                                            <p>{dataPost.companyData.amountEmployer}</p>
+                                        </div>
+
+
+                                    </div>
                                 </div>
+
                             </div>
+
                         </div>
                     </div>
                 </main>

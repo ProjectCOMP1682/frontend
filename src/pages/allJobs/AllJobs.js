@@ -155,37 +155,37 @@ const AllJobs = () => {
 
             <div className='mt-8'>
 
-            <div className="col-xl-9 col-lg-9 col-md-8">
-                {loading ? (
-                    <div>Loading...</div>
-                ) : (
-                    <>
-                    <RightContent handleSearch={handleSearch} count={count} post={post}/>
-                    <ReactPaginate
-                        forcePage={numberPage}
-                        previousLabel={'<'}
-                        nextLabel={'>'}
-                        breakLabel={'...'}
-                        pageCount={countPage}
-                        marginPagesDisplayed={3}
-                        containerClassName="flex justify-center space-x-2 py-3"
-                        pageClassName="flex items-center justify-center w-10 h-10 border border-gray-300 rounded"
-                        pageLinkClassName="flex items-center justify-center w-full h-full text-gray-700 hover:bg-gray-200"
-                        previousClassName="flex items-center justify-center w-10 h-10 border border-gray-300 rounded"
-                        previousLinkClassName="flex items-center justify-center w-full h-full text-gray-700 hover:bg-gray-200"
-                        nextClassName="flex items-center justify-center w-10 h-10 border border-gray-300 rounded"
-                        nextLinkClassName="flex items-center justify-center w-full h-full text-gray-700 hover:bg-gray-200"
-                        breakClassName="flex items-center justify-center w-10 h-10 border border-gray-300 rounded"
-                        breakLinkClassName="flex items-center justify-center w-full h-full text-gray-700 hover:bg-gray-200"
-                        activeClassName="bg-[#9873ff] text-white"
-                        onPageChange={handleChangePage}
-                    />
-                    </>
+                <div className="col-xl-9 col-lg-9 col-md-8">
+                    {loading ? (
+                        <div>Loading...</div>
+                    ) : (
+                        <>
+                            <RightContent handleSearch={handleSearch} count={count} post={post}/>
+                            <ReactPaginate
+                                forcePage={numberPage}
+                                previousLabel={'<'}
+                                nextLabel={'>'}
+                                breakLabel={'...'}
+                                pageCount={countPage}
+                                marginPagesDisplayed={3}
+                                containerClassName="flex justify-center space-x-2 py-3"
+                                pageClassName="flex items-center justify-center w-10 h-10 border border-gray-300 rounded"
+                                pageLinkClassName="flex items-center justify-center w-full h-full text-gray-700 hover:bg-gray-200"
+                                previousClassName="flex items-center justify-center w-10 h-10 border border-gray-300 rounded"
+                                previousLinkClassName="flex items-center justify-center w-full h-full text-gray-700 hover:bg-gray-200"
+                                nextClassName="flex items-center justify-center w-10 h-10 border border-gray-300 rounded"
+                                nextLinkClassName="flex items-center justify-center w-full h-full text-gray-700 hover:bg-gray-200"
+                                breakClassName="flex items-center justify-center w-10 h-10 border border-gray-300 rounded"
+                                breakLinkClassName="flex items-center justify-center w-full h-full text-gray-700 hover:bg-gray-200"
+                                activeClassName="bg-[#9873ff] text-white"
+                                onPageChange={handleChangePage}
+                            />
+                        </>
                     )}
-            </div>
-
-            </div>
                 </div>
+
+                </div>
+        </div>
 
 
     );

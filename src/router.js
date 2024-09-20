@@ -7,6 +7,8 @@ import Statistics from "./pages/statistics/Statistics";
 import Broken from "./pages/broken/Broken";
 import AllJobs from "./pages/allJobs/AllJobs";
 import Blogs from "./pages/blogs/Blogs";
+import ListCompany from "./pages/Company/ListCompany";
+import DetailCompany from "./pages/Company/DetailCompany";
 
 // browser router file
 const router = createBrowserRouter([
@@ -23,8 +25,12 @@ const router = createBrowserRouter([
                 element: <JobDetails />,
             },
             {
-                path: "/applied",
-                element: <AppliedJobs />
+                path: "/company",
+                element: <ListCompany />
+            },
+            {
+                path: "/detail-company/:id",
+                element: <DetailCompany />
             },
             {
                 path: "/statistics",
