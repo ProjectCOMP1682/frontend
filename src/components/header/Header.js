@@ -71,7 +71,7 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link to={'/all-jobs'} className='btn gradient-btn'>
+                <Link to={'/login'} className='btn gradient-btn'>
                     Start Applying
                 </Link>
             </div>

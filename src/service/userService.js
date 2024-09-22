@@ -11,6 +11,21 @@ const getListJobTypeAndCountPost = (data) => {
     return axios.get(`/api/get-list-job-count-post?limit=${data.limit}&offset=${data.offset}`)
 
 }
+//==================USER==========================//
+const createNewUser = (data) => {
+    return axios.post(`/api/create-new-user`, data)
+
+}
+const handleLoginService = (data) => {
+    return axios.post(`/api/login`, data)
+
+}
+const checkUserPhoneService = (phonenumber) => {
+    return axios.get(`/api/check-phonenumber-user?phonenumber=${phonenumber}`)
+}
+const changePasswordByphone = (data) => {
+    return axios.post(`/api/changepasswordbyPhone`,data)
+}
 //================================== COMPANY ============================
 
 const getListCompany = (data) => {
@@ -43,6 +58,7 @@ const getDetailPostByIdService = (id) => {
 
 export {
   getAllCodeService, getListJobTypeAndCountPost,
+  createNewUser,handleLoginService,changePasswordByphone, checkUserPhoneService,
     getListCompany, getDetailCompanyById,
     getListPostService,getDetailPostByIdService
 }

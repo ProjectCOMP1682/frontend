@@ -9,6 +9,9 @@ import AllJobs from "./pages/allJobs/AllJobs";
 import Blogs from "./pages/blogs/Blogs";
 import ListCompany from "./pages/Company/ListCompany";
 import DetailCompany from "./pages/Company/DetailCompany";
+import Login from "./pages/login/Login";
+import Register from "./pages/login/Register";
+import ForgetPassword from "./pages/login/ForgetPassword";
 
 // browser router file
 const router = createBrowserRouter([
@@ -19,6 +22,18 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home />,
+            },
+            {
+                path: "/login",
+                element: <Login />
+            },
+            {
+                path: "/forget-password",
+                element: <ForgetPassword />
+            },
+            {
+                path: "/register",
+                element: <Register />
             },
             {
                 path: "/job-details/:id",
@@ -32,10 +47,7 @@ const router = createBrowserRouter([
                 path: "/detail-company/:id",
                 element: <DetailCompany />
             },
-            {
-                path: "/statistics",
-                element: <Statistics />
-            },
+
             {
                 path: "/all-jobs",
                 element: <AllJobs />
