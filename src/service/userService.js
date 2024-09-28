@@ -34,6 +34,10 @@ const UpdateUserService = (data) => {
     return axios.put(`/api/update-user`, data)
 
 }
+const handleChangePassword = (data) => {
+    return axios.post(`/api/changepassword`, data)
+}
+
 //================================== COMPANY ============================
 
 const getListCompany = (data) => {
@@ -66,7 +70,7 @@ const getDetailPostByIdService = (id) => {
 
 export {
   getAllCodeService, getListJobTypeAndCountPost,
-  createNewUser,handleLoginService,changePasswordByphone, checkUserPhoneService, getDetailUserById, UpdateUserService,
+  createNewUser,handleLoginService,changePasswordByphone, checkUserPhoneService, getDetailUserById, UpdateUserService,handleChangePassword,
     getListCompany, getDetailCompanyById,
     getListPostService,getDetailPostByIdService
 }

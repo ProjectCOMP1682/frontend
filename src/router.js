@@ -12,6 +12,7 @@ import Register from "./pages/login/Register";
 import ForgetPassword from "./pages/login/ForgetPassword";
 import { Navigate } from 'react-router-dom';
 import CandidateInfo from './pages/Candidate/CandidateInfo';
+import ChangePassword from "./pages/system/User/ChangePassword";
 
 // browser router file
 const router = createBrowserRouter([
@@ -68,7 +69,13 @@ const router = createBrowserRouter([
                     ? <CandidateInfo />
                     : <Navigate to="/login" />
             },
-
+            {
+                path: "/candidate/changepassword",
+                element: JSON.parse(localStorage.getItem("userData")) &&
+                JSON.parse(localStorage.getItem("userData")).roleCode === "CANDIDATE"
+                    ? <ChangePassword />
+                    : <Navigate to="/login" />
+            },
 
         ]
     },
