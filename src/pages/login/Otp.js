@@ -8,26 +8,19 @@ const Otp = (props) => {
     const [inputValues, setInputValues] = useState({
         so1: '', so2: '', so3: '', so4: '', so5: '', so6: ''
     });
-
     useEffect(() => {
         if (props.dataUser) {
             let fetchOtp = async () => {
                 await onSignInSubmit(false)
             }
             fetchOtp()
-
         }
-
-
-
     }, [props.dataUser])
     const handleOnChange = event => {
         const { name, value } = event.target;
         setInputValues({ ...inputValues, [name]: value });
-
     };
     let configureCaptcha = () => {
-
         window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('sign-in-button', {
             'size': 'invisible',
             defaultCountry: "VN"
@@ -40,19 +33,14 @@ const Otp = (props) => {
         if (phoneNumber) {
             phoneNumber = "+84" + phoneNumber.slice(1);
         }
-
-
         console.log("check phonenumber", phoneNumber)
         const appVerifier = window.recaptchaVerifier;
-
-
         await firebase.auth().signInWithPhoneNumber(phoneNumber, appVerifier)
             .then((confirmationResult) => {
                 // SMS sent. Prompt user to type the code from the message, then sign the
                 // user in with confirmationResult.confirm(code).
                 window.confirmationResult = confirmationResult;
                 toast.success("OTP code sent to phone")
-
                 // ...
             }).catch((error) => {
                 console.log(error)
@@ -61,7 +49,6 @@ const Otp = (props) => {
     }
     let submitOTP = async () => {
         const code = +(inputValues.so1 + inputValues.so2 + inputValues.so3 + inputValues.so4 + inputValues.so5 + inputValues.so6);
-
         await window.confirmationResult.confirm(code).then((result) => {
             // User signed in successfully.
             const user = result.user;
@@ -79,14 +66,11 @@ const Otp = (props) => {
                 if (res && res.errCode === 0) {
                     toast.success("Account created successfully")
                     handleLogin(props.dataUser.phonenumber, props.dataUser.password)
-
-
                 } else {
                     toast.error(res.errMessage)
                 }
             }
             createUser()
-
             // ...
         }).catch((error) => {
             // User couldn't sign in (bad verification code?)
@@ -98,20 +82,15 @@ const Otp = (props) => {
         await onSignInSubmit(true)
     }
     let handleLogin = async (phonenumber, password) => {
-
         let res = await handleLoginService({
             phonenumber: phonenumber,
             password: password
         })
-
         if (res && res.errCode === 0) {
-
-
             localStorage.setItem("userData", JSON.stringify(res.user))
             localStorage.setItem("token_user", res.token)
             if (res.user.roleCode === "ADMIN" || res.user.roleCode === "EMPLOYER") {
                 window.location.href = "/admin/"
-
             }
             else {
                 window.location.href = "/"
@@ -195,20 +174,14 @@ const Otp = (props) => {
                             Resend
                         </a>
                     </div>
-                    <div>
-                        <button
-                            onClick={() => submitOTP()}
-                            className="w-full py-3 bg-[#7E90FE] text-white rounded-lg font-semibold hover:bg-[#6C7DD8] transition"
-                        >
-                            Authentication
+                    <div className="mt-3 mb-5">
+                        <div id="sign-in-button"></div>
+                        <button onClick={() => submitOTP()} className="px-4 py-2 text-white bg-[#9873ff] rounded-lg font-semibold hover:bg-[#7E90FE] transition">Authentication
                         </button>
                     </div>
                 </div>
             </div>
         </>
-
-
-)
+    )
 }
-
 export default Otp

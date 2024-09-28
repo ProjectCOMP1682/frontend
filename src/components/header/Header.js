@@ -1,7 +1,55 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import { useEffect, useState, useRef } from 'react';
+import { FaInfoCircle, FaCogs, FaFileAlt, FaKey, FaSignOutAlt } from 'react-icons/fa'; // Importing icons
 
 const Header = () => {
+    const [user, setUser] = useState({})
+    const dropdownRef = useRef(null);
+
+    useEffect(() => {
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        // if (userData && userData.roleCode !== 'CANDIDATE')
+        // {
+        //     toast.error("Vai trò của bạn không làm việc ở đây")
+        //     setTimeout(() => {
+        //         window.location.href = "/admin"
+        //     }, 1000);
+        // }
+        setUser(userData)
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsDropdownOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [])
+    let handleLogout = () => {
+        console.log("hello")
+        localStorage.removeItem("userData");
+        localStorage.removeItem("token_user")
+        window.location.href = "/login"
+    }
+
+    let scrollHeader = () => {
+        window.addEventListener("scroll", function () {
+            var header = document.querySelector(".header-area");
+            if (header) {
+                header.classList.toggle("sticky", window.scrollY > 0)
+            }
+        })
+    }
+    scrollHeader()
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+    const toggleDropdown = () => {
+        setIsDropdownOpen(!isDropdownOpen);
+    };
     return (
         <div className="navbar px-0">
             <div className="navbar-start">
@@ -71,9 +119,51 @@ const Header = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link to={'/login'} className='btn gradient-btn'>
-                    Start Applying
-                </Link>
+                {user ? (
+                    <div className="relative" ref={dropdownRef}>
+                        <button
+                            className="flex items-center space-x-2 focus:outline-none"
+                            onClick={toggleDropdown}
+                        >
+                            <img
+                                className="w-8 h-8 rounded-full object-cover"
+                                src={user.image}
+                                alt="profile"
+                            />
+                            <span className="font-semibold">{user.firstName + ' ' + user.lastName}</span>
+                        </button>
+                        {isDropdownOpen && (
+                            <div
+                                className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2"
+                                style={{ zIndex: 50 }} // Ensure dropdown is on top
+                            >
+                                <Link to='/candidate/info' className="block px-4 py-2 hover:bg-gray-100 flex items-center">
+                                    <FaInfoCircle className="mr-2" /> Information
+                                </Link>
+                                <Link to='/candidate/usersetting' className="block px-4 py-2 hover:bg-gray-100 flex items-center">
+                                    <FaCogs className="mr-2" /> Advanced Settings
+                                </Link>
+                                <Link to='/candidate/cv-post' className="block px-4 py-2 hover:bg-gray-100 flex items-center">
+                                    <FaFileAlt className="mr-2" /> Work submitted
+                                </Link>
+                                <Link to='/candidate/changepassword' className="block px-4 py-2 hover:bg-gray-100 flex items-center">
+                                    <FaKey className="mr-2" /> Change password
+                                </Link>
+                                <button
+                                    onClick={handleLogout}
+                                    className="block px-4 py-2 hover:bg-gray-100 flex items-center"
+                                >
+                                    <FaSignOutAlt className="mr-2" /> Log out
+                                </button>
+                            </div>
+                        )}
+                    </div>
+                ) : (
+                    <Link to={'/login'} className='btn gradient-btn'>
+                        Start Applying
+                    </Link>
+                )}
+
             </div>
         </div>
     )

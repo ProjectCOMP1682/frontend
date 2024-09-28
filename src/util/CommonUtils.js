@@ -1,6 +1,13 @@
 import moment from 'moment';
 class CommonUtils {
-
+    static getBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = error => reject(error)
+        })
+    }
     // return time form time to now
     static formatDate(time) {
         let a = moment.unix(new Date().getTime() / 1000).format('DD/MM/YYYY')

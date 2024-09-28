@@ -1,6 +1,5 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
-import { getAnalytics } from "firebase/analytics";
 const firebaseConfig = {
     apiKey: "AIzaSyAOJxpwraxlCuxX77WmH1895k2dLYUUrho",
     authDomain: "findjob-918fe.firebaseapp.com",

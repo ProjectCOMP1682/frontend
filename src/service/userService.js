@@ -26,6 +26,14 @@ const checkUserPhoneService = (phonenumber) => {
 const changePasswordByphone = (data) => {
     return axios.post(`/api/changepasswordbyPhone`,data)
 }
+const getDetailUserById = (id) => {
+    return axios.get(`/api/get-detail-user-by-id?id=${id}`)
+
+}
+const UpdateUserService = (data) => {
+    return axios.put(`/api/update-user`, data)
+
+}
 //================================== COMPANY ============================
 
 const getListCompany = (data) => {
@@ -58,7 +66,7 @@ const getDetailPostByIdService = (id) => {
 
 export {
   getAllCodeService, getListJobTypeAndCountPost,
-  createNewUser,handleLoginService,changePasswordByphone, checkUserPhoneService,
+  createNewUser,handleLoginService,changePasswordByphone, checkUserPhoneService, getDetailUserById, UpdateUserService,
     getListCompany, getDetailCompanyById,
     getListPostService,getDetailPostByIdService
 }

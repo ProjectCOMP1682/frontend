@@ -2,8 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import Main from "./pages/main/Main";
 import Home from "./pages/home/Home";
 import JobDetails from "./components/jobDetails/JobDetails";
-import AppliedJobs from "./pages/appliedJobs/AppliedJobs";
-import Statistics from "./pages/statistics/Statistics";
 import Broken from "./pages/broken/Broken";
 import AllJobs from "./pages/allJobs/AllJobs";
 import Blogs from "./pages/blogs/Blogs";
@@ -12,6 +10,8 @@ import DetailCompany from "./pages/Company/DetailCompany";
 import Login from "./pages/login/Login";
 import Register from "./pages/login/Register";
 import ForgetPassword from "./pages/login/ForgetPassword";
+import { Navigate } from 'react-router-dom';
+import CandidateInfo from './pages/Candidate/CandidateInfo';
 
 // browser router file
 const router = createBrowserRouter([
@@ -59,7 +59,17 @@ const router = createBrowserRouter([
             {
                 path: "*",
                 element: <Broken />
-            }
+            },
+
+            {
+                path: "/candidate/info",
+                element: JSON.parse(localStorage.getItem("userData")) &&
+                JSON.parse(localStorage.getItem("userData")).roleCode === "CANDIDATE"
+                    ? <CandidateInfo />
+                    : <Navigate to="/login" />
+            },
+
+
         ]
     },
     {

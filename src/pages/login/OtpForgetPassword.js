@@ -105,8 +105,10 @@ const OtpForgetPassword = (props) => {
                             <a onClick={() => resendOTP()} className="text-blue-500 cursor-pointer ml-2">Resend</a>
                         </small>
                     </div>
-                    <div className="mt-5">
-                        <button onClick={() => submitOTP()} className="w-full py-3 bg-[#7E90FE] text-white rounded-lg font-semibold hover:bg-[#6C7DD8] transition">Authentication</button>
+                    <div className="mt-3 mb-5">
+                        <div id="sign-in-button"></div>
+                        <button onClick={() => submitOTP()} className="px-4 py-2 text-white bg-[#9873ff] rounded-lg font-semibold hover:bg-[#7E90FE] transition">Authentication
+                        </button>
                     </div>
                 </div>
             </div>
