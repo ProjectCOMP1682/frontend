@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
-import Flatpickr from 'react-flatpickr';
-import moment from 'moment';
-
-import KeyCodeUtils from "../../util/KeyCodeUtils";
+import React, { Component } from "react";
+import Flatpickr from "react-flatpickr"; // Make sure to install this package
+import moment from "moment"; // Make sure to install this package
+import "flatpickr/dist/flatpickr.css"; // Import Flatpickr CSS
 
 class DatePicker extends Component {
     flatpickrNode = null;
@@ -10,37 +9,35 @@ class DatePicker extends Component {
     nodeRef = (element) => {
         this.flatpickr = element && element.flatpickr;
         this.flatpickrNode = element && element.node;
+
         if (this.flatpickrNode) {
-            this.flatpickrNode.addEventListener('blur', this.handleBlur);
-            this.flatpickrNode.addEventListener('keydown', this.handlerKeyDown);
+            this.flatpickrNode.addEventListener("blur", this.handleBlur);
+            this.flatpickrNode.addEventListener("keydown", this.handleKeyDown);
         }
     };
 
-    handlerKeyDown = (event) => {
+    componentWillUnmount() {
+        if (this.flatpickrNode) {
+            this.flatpickrNode.removeEventListener("blur", this.handleBlur);
+            this.flatpickrNode.removeEventListener("keydown", this.handleKeyDown);
+        }
+    }
+
+    handleKeyDown = (event) => {
         const keyCode = event.which || event.keyCode;
-        if (keyCode === KeyCodeUtils.ENTER) {
+        if (keyCode === 13) { // ENTER key
             event.preventDefault();
             const { onChange } = this.props;
             const value = event.target.value;
-
-            const valueMoment = moment(value, 'DD/MM/YYYY');
+            const valueMoment = moment(value, "DD/MM/YYYY");
             onChange([valueMoment.toDate(), valueMoment.toDate()]);
         }
-    }
-
-    componentWillUnmount() {
-        if (this.flatpickrNode) {
-            this.flatpickrNode.removeEventListener('blur', this.handleBlur);
-            this.flatpickrNode.removeEventListener('keydown', this.handlerKeyDown);
-        }
-    }
+    };
 
     handleBlur = (event) => {
         const { onChange } = this.props;
         const value = event.target.value;
-
-        event.preventDefault();
-        const valueMoment = moment(value, 'DD/MM/YYYY');
+        const valueMoment = moment(value, "DD/MM/YYYY");
         onChange([valueMoment.toDate(), valueMoment.toDate()]);
     };
 
@@ -48,54 +45,39 @@ class DatePicker extends Component {
         if (this.flatpickrNode) {
             this.flatpickrNode.blur();
         }
-    }
-
-    close() {
-        this.flatpickr.close();
-    }
+    };
 
     checkDateValue = (str, max) => {
-        if (str.charAt(0) !== '0' || str === '00') {
-            var num = parseInt(str);
+        if (str.charAt(0) !== "0" || str === "00") {
+            let num = parseInt(str);
             if (isNaN(num) || num <= 0 || num > max) num = 1;
-            str = num > parseInt(max.toString().charAt(0)) && num.toString().length === 1 ? '0' + num : num.toString();
+            str = num > parseInt(max.toString().charAt(0)) && num.toString().length === 1 ? "0" + num : num.toString();
         }
         return str;
-    }
+    };
 
     autoFormatOnChange = (value, separator) => {
-        var input = value;
-        let regexForDeleting = new RegExp(`\\D\\${separator}$`);
+        let input = value;
 
-        if (regexForDeleting.test(input)) input = input.substr(0, input.length - 3);
+        // Remove unnecessary separators
+        if (/\D\/$/.test(input)) input = input.substr(0, input.length - 3);
 
-        var values = input.split(separator).map(function (v) {
-            return v.replace(/\D/g, '');
-        });
-
+        let values = input.split(separator).map((v) => v.replace(/\D/g, ""));
         if (values[0]) values[0] = this.checkDateValue(values[0], 31);
         if (values[1]) values[1] = this.checkDateValue(values[1], 12);
 
-        var output = values.map(function (v, i) {
-            return v.length === 2 && i < 2 ? v + ' ' + separator + ' ' : v;
-        });
-
-        return output.join('').substr(0, 14);
-    }
+        const output = values.map((v, i) => (v.length === 2 && i < 2 ? v + " " + separator + " " : v));
+        return output.join("").substr(0, 14);
+    };
 
     onInputChange = (e) => {
-        if (this.DISPLAY_FORMAT === this.DATE_FORMAT_AUTO_FILL) {
-            let converted = this.autoFormatOnChange(e.target.value, this.SEPERATOR);
-            e.target.value = converted;
-        }
-    }
+        const converted = this.autoFormatOnChange(e.target.value, this.SEPARATOR);
+        e.target.value = converted;
+    };
 
-    // Date separator
-    SEPERATOR = "/";
-    DATE_FORMAT_AUTO_FILL = "d/m/Y"; // Format không thay đổi
-
-    // Date display format
-    DISPLAY_FORMAT = "d/m/Y";
+    // Constants
+    SEPARATOR = "/";
+    DISPLAY_FORMAT = "d/m/Y"; // Format for display
 
     render() {
         const { value, onChange, minDate, onClose, ...otherProps } = this.props;
@@ -104,12 +86,9 @@ class DatePicker extends Component {
             allowInput: true,
             disableMobile: true,
             onClose: onClose,
-            onOpen: this.onOpen
+            onOpen: this.onOpen,
+            minDate: minDate,
         };
-
-        if (minDate) {
-            options.minDate = minDate;
-        }
 
         return (
             <Flatpickr
@@ -118,16 +97,6 @@ class DatePicker extends Component {
                 onChange={onChange}
                 options={options}
                 {...otherProps}
-                render={({ defaultValue, value, ...props }, ref) => (
-                    <input
-                        {...props}
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        defaultValue={defaultValue}
-                        ref={ref}
-                        onInputChange={this.onInputChange}
-                        onBlur={this.handleBlur}
-                    />
-                )}
             />
         );
     }

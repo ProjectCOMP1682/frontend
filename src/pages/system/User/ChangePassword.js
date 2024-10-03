@@ -89,4 +89,4 @@ const ChangePassword = (props) => {
     );
 }
 
-    export default ChangePassword
+export default ChangePassword

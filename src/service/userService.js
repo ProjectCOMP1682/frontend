@@ -12,10 +12,32 @@ const getListJobTypeAndCountPost = (data) => {
 
 }
 //==================USER==========================//
+const getAllUsers = (data) => {
+    return axios.get(`/api/get-all-user?limit=${data.limit}&offset=${data.offset}&search=${data.search}`)
+
+}
+const BanUserService = (userId) => {
+    return axios.post(`/api/ban-user`, {
+        data: {
+            id: userId
+        }
+    })
+
+}
+
+const UnbanUserService = (userId) => {
+    return axios.post(`/api/unban-user`, {
+        data: {
+            id: userId
+        }
+    })
+
+}
 const createNewUser = (data) => {
     return axios.post(`/api/create-new-user`, data)
 
 }
+
 const handleLoginService = (data) => {
     return axios.post(`/api/login`, data)
 
@@ -70,7 +92,7 @@ const getDetailPostByIdService = (id) => {
 
 export {
   getAllCodeService, getListJobTypeAndCountPost,
-  createNewUser,handleLoginService,changePasswordByphone, checkUserPhoneService, getDetailUserById, UpdateUserService,handleChangePassword,
+  createNewUser,handleLoginService,changePasswordByphone, checkUserPhoneService, getDetailUserById, UpdateUserService,handleChangePassword,BanUserService,UnbanUserService, getAllUsers,
     getListCompany, getDetailCompanyById,
     getListPostService,getDetailPostByIdService
 }

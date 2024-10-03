@@ -13,7 +13,11 @@ import ForgetPassword from "./pages/login/ForgetPassword";
 import { Navigate } from 'react-router-dom';
 import CandidateInfo from './pages/Candidate/CandidateInfo';
 import ChangePassword from "./pages/system/User/ChangePassword";
-
+import AdminMain from "./pages/system/AdminMain";
+import AdminDashboard from "./pages/system/AdminDashboard"
+import UserInfo from "./pages/system/User/UserInfo";
+import ManageUser from "./pages/system/User/ManageUser";
+import AddUser from "./pages/system/User/AddUser";
 // browser router file
 const router = createBrowserRouter([
     {
@@ -77,6 +81,37 @@ const router = createBrowserRouter([
                     : <Navigate to="/login" />
             },
 
+
+        ]
+    },
+    {
+        path: "/admin",
+        element: JSON.parse(localStorage.getItem("userData")) &&
+        JSON.parse(localStorage.getItem("userData")).roleCode === "ADMIN"
+            ? <AdminMain />
+            : <Navigate to="/login" />,
+        children: [
+            {
+                path: "dashboard",
+                element: <AdminDashboard /> // Ví dụ một trang dashboard admin
+            },
+            {
+                path: "user-info",
+                element: <UserInfo /> // Ví dụ một trang dashboard admin
+            },
+            {
+                path: "changepassword",
+                element: <ChangePassword/> // Ví dụ một trang dashboard admin
+            },
+            {
+                path: "list-user",
+                element: <ManageUser/> // Ví dụ một trang dashboard admin
+            },
+            {
+                path: "add-user",
+                element: <AddUser/> // Ví dụ một trang dashboard admin
+            },
+            // Các route khác của admin ở đây
         ]
     },
     {
