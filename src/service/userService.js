@@ -62,12 +62,36 @@ const handleChangePassword = (data) => {
 
 //================================== COMPANY ============================
 
+const getDetailCompanyByUserId = (userId,companyId) => {
+    return axios.get(`/api/get-detail-company-by-userId?userId=${userId}&companyId=${companyId}`)
+
+}
+
 const getListCompany = (data) => {
     return axios.get(`/api/get-list-company?limit=${data.limit}&offset=${data.offset}&search=${data.search}`)
 
 }
 const getDetailCompanyById = (id) => {
     return axios.get(`/api/get-detail-company-by-id?id=${id}`)
+
+}
+
+
+const getAllCompany = (data) => {
+    return axios.get(`/api/get-all-company?limit=${data.limit}&offset=${data.offset}&search=${data.search}&censorCode=${data.censorCode}`)
+}
+
+const banCompanyService = (data) => {
+    return axios.put(`/api/ban-company`, data)
+}
+
+const unbanCompanyService = (data) => {
+    return axios.put(`/api/unban-company`, data)
+
+}
+
+const accecptCompanyService = (data) => {
+    return axios.put(`/api/accecpt-company`, data)
 
 }
 //======================== POST ====================================//
@@ -93,6 +117,6 @@ const getDetailPostByIdService = (id) => {
 export {
   getAllCodeService, getListJobTypeAndCountPost,
   createNewUser,handleLoginService,changePasswordByphone, checkUserPhoneService, getDetailUserById, UpdateUserService,handleChangePassword,BanUserService,UnbanUserService, getAllUsers,
-    getListCompany, getDetailCompanyById,
+    getListCompany, getDetailCompanyById, getAllCompany , accecptCompanyService, banCompanyService, unbanCompanyService,getDetailCompanyByUserId,
     getListPostService,getDetailPostByIdService
 }

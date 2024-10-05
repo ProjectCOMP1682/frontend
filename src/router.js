@@ -18,6 +18,8 @@ import AdminDashboard from "./pages/system/AdminDashboard"
 import UserInfo from "./pages/system/User/UserInfo";
 import ManageUser from "./pages/system/User/ManageUser";
 import AddUser from "./pages/system/User/AddUser";
+import ManageCompany from "./pages/system/Company/ManageCompany";
+import ViewCompany from "./pages/system/Company/ViewCompany";
 // browser router file
 const router = createBrowserRouter([
     {
@@ -111,6 +113,28 @@ const router = createBrowserRouter([
                 path: "add-user",
                 element: <AddUser/> // Ví dụ một trang dashboard admin
             },
+            {
+                path: "edit-user/:id",
+                element: <AddUser/> // Ví dụ một trang dashboard admin
+            },
+            // {
+            //     path: "add-job-type",
+            //     element: <AddJobType/> // Ví dụ một trang dashboard admin
+            // },
+            {
+                path: "list-company-admin",
+                element: <ManageCompany/> // Ví dụ một trang dashboard admin
+            },
+
+            {
+                path: "view-detail-company-admin/:id",
+                element: <ViewCompany/> // Ví dụ một trang dashboard admin
+            },
+            // {
+            //     path: "edit-job-type/:code",
+            //     element: <AddUser/> // Ví dụ một trang dashboard admin
+            // },
+
             // Các route khác của admin ở đây
         ]
     },
