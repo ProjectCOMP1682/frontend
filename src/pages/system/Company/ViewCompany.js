@@ -8,13 +8,15 @@ import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 import 'react-markdown-editor-lite/lib/index.css';
 import { Spinner, Modal } from 'reactstrap';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const ViewCompany = () => {
     const { id } = useParams();
     const mdParser = new MarkdownIt();
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
+
     const [inputValues, setInputValues] = useState({
         image: '',
         coverImage: '',
@@ -91,13 +93,14 @@ const ViewCompany = () => {
                 <div className="grid grid-cols-1 gap-4">
                     <div className="bg-white shadow-md rounded-lg p-4">
                         <div className="mb-4">
-
+                            <div onClick={() => navigate(-1)} className='btn gradient-btn' >
+                               Back
+                            </div>
                             <h4 className="text-lg font-semibold">
                                 View company information
                             </h4>
                             <br />
                             <form className="space-y-4">
-
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
                                         <label className="block font-medium">Company name</label>

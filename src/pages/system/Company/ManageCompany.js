@@ -209,7 +209,7 @@ const ManageCompany = () => {
 
                         <div>Number of companies: {total}</div>
                         <div className="overflow-x-auto pt-2">
-                            <table className="table-auto w-full text-left border-collapse border border-gray-300">
+                            <table className="table w-full border border-gray-300">
                                 <thead>
                                 <tr className="bg-gray-100">
                                     <th className="border border-gray-300 px-4 py-2">No</th>
@@ -219,8 +219,8 @@ const ManageCompany = () => {
                                     <th className="border border-gray-300 px-4 py-2">Tax code</th>
                                     <th className="border border-gray-300 px-4 py-2">Status</th>
                                     <th className="border border-gray-300 px-4 py-2">Censor</th>
-                                        <th className="border border-gray-300 px-4 py-2">Date of creation</th>
-                                    <th className="border border-gray-300 px-4 py-2">Operation</th>
+                                    <th className="border border-gray-300 px-4 py-2">Date of creation</th>
+                                    <th className="border border-gray-300 px-4 py-2">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>

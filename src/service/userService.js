@@ -11,6 +11,52 @@ const getListJobTypeAndCountPost = (data) => {
     return axios.get(`/api/get-list-job-count-post?limit=${data.limit}&offset=${data.offset}`)
 
 }
+const DeleteAllcodeService = (allcodeId) => {
+    return axios.delete(`/api/delete-all-code`, {
+        data: {
+            code: allcodeId
+        }
+    })
+}
+const getListAllCodeService = (data) => {
+    return axios.get(`/api/get-list-allcode?type=${data.type}&limit=${data.limit}&offset=${data.offset}&search=${data.search}`)
+
+}
+const createAllCodeService = (data) => {
+    return axios.post(`/api/create-new-all-code`, data)
+
+}
+const getDetailAllcodeByCode = (code) => {
+    return axios.get(`/api/get-detail-all-code-by-code?code=${code}`)
+
+}
+const UpdateAllcodeService = (data) => {
+    return axios.put(`/api/update-all-code`, data)
+
+}
+const createSkilleService = (data) => {
+    return axios.post(`/api/create-new-skill`, data)
+
+}
+const DeleteSkillService = (skillId) => {
+    return axios.delete(`/api/delete-skill`, {
+        data: {
+            id: skillId
+        }
+    })
+}
+const UpdateSkillService = (data) => {
+    return axios.put(`/api/update-skill`, data)
+
+}
+const getListSkill  = (data) => {
+    return axios.get(`/api/get-list-skill?categoryJobCode=${data.categoryJobCode}&limit=${data.limit}&offset=${data.offset}&search=${data.search}`)
+
+}
+const getDetailSkillById = (id) => {
+    return axios.get(`/api/get-detail-skill-by-id?id=${id}`)
+
+}
 //==================USER==========================//
 const getAllUsers = (data) => {
     return axios.get(`/api/get-all-user?limit=${data.limit}&offset=${data.offset}&search=${data.search}`)
@@ -113,10 +159,66 @@ const getListPostService = (data) => {
 const getDetailPostByIdService = (id) => {
     return axios.get(`/api/get-detail-post-by-id?id=${id}`)
 }
+const banPostService = (data) => {
+    return axios.put(`/api/ban-post`, data)
+}
+const getAllPostByAdminService = (data) => {
+    return axios.get(`/api/get-list-post-admin?companyId=${data.companyId}&limit=${data.limit}&offset=${data.offset}&search=${data.search}&censorCode=${data.censorCode}`)
 
+}
+const activePostService = (data) => {
+    return axios.put(`/api/active-post`, data)
+
+}
+const getAllPostByRoleAdminService = (data) => {
+    return axios.get(`/api/get-all-post-admin?limit=${data.limit}&offset=${data.offset}&search=${data.search}&censorCode=${data.censorCode}`)
+
+}
+const acceptPostService = (data) => {
+    return axios.put(`/api/accept-post`, data)
+}
+const getListNoteByPost = (data) => {
+    return axios.get(`/api/get-note-by-post?limit=${data.limit}&offset=${data.offset}&id=${data.id}`)
+}
+//======================== PACKAGE ====================================//
+
+const getAllPackage = (data) => {
+    return axios.get(`/api/get-all-package?limit=${data.limit}&offset=${data.offset}&search=${data.search}`)
+}
+const setActiveTypePackage= (data) => {
+    return axios.put(`/api/set-active-package-post`, data)
+}
+const getPackageById = (id) => {
+    return axios.get(`/api/get-package-by-id?id=${id}`)
+}
+const createPackagePost= (data) => {
+    return axios.post(`/api/create-package-post`, data)
+}
+const updatePackagePost = (data) => {
+    return axios.put(`/api/update-package-post`, data)
+}
+//======================== PACKAGE CV ====================================//
+
+const getAllPackageCv = (data) => {
+    return axios.get(`/api/get-all-package-cv?limit=${data.limit}&offset=${data.offset}&search=${data.search}`)
+}
+const setActiveTypePackageCv= (data) => {
+    return axios.put(`/api/set-active-package-cv`, data)
+}
+const getPackageByIdCv = (id) => {
+    return axios.get(`/api/get-package-cv-by-id?id=${id}`)
+}
+const createPackageCv= (data) => {
+    return axios.post(`/api/create-package-cv`, data)
+}
+const updatePackageCv = (data) => {
+    return axios.put(`/api/update-package-cv`, data)
+}
 export {
-  getAllCodeService, getListJobTypeAndCountPost,
-  createNewUser,handleLoginService,changePasswordByphone, checkUserPhoneService, getDetailUserById, UpdateUserService,handleChangePassword,BanUserService,UnbanUserService, getAllUsers,
+  getAllCodeService, getListJobTypeAndCountPost,getListAllCodeService,DeleteAllcodeService,createAllCodeService,  getDetailAllcodeByCode, UpdateAllcodeService,DeleteSkillService, getListSkill,createSkilleService,getDetailSkillById,UpdateSkillService,
+    createNewUser,handleLoginService,changePasswordByphone, checkUserPhoneService, getDetailUserById, UpdateUserService,handleChangePassword,BanUserService,UnbanUserService, getAllUsers,
     getListCompany, getDetailCompanyById, getAllCompany , accecptCompanyService, banCompanyService, unbanCompanyService,getDetailCompanyByUserId,
-    getListPostService,getDetailPostByIdService
+    getListPostService,getDetailPostByIdService,banPostService,acceptPostService, getAllPostByAdminService,getAllPostByRoleAdminService,activePostService,getListNoteByPost,
+    setActiveTypePackage, getAllPackage,getPackageById,createPackagePost,updatePackagePost,
+    getAllPackageCv,setActiveTypePackageCv, getPackageByIdCv,createPackageCv,updatePackageCv
 }

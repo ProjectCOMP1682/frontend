@@ -4,7 +4,7 @@ import { createNewUser, getDetailUserById, UpdateUserService } from '../../../se
 import { useFetchAllcode } from '../../../util/fetch';
 import DatePicker from '../../../components/input/DatePicker';
 import { toast } from 'react-toastify';
-import { useNavigate, useParams } from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import localization from 'moment/locale/vi';
 import moment from 'moment';
 
@@ -16,7 +16,8 @@ const AddUser = () => {
     const [isActionADD, setisActionADD] = useState(true)
     const [isLoading, setIsLoading] = useState(false)
     const { id } = useParams();
-    const navigate = useNavigate(); // Create a navigate function
+    const navigate = useNavigate();
+
 
     const [inputValues, setInputValues] = useState({
         email: '', firstName: '', lastName: '', address: '', phonenumber: '', genderCode: '', roleCode: '', id: '', dob: '', image: ''
@@ -140,14 +141,14 @@ const AddUser = () => {
     }
 
     return (
-        <div className="">
+
+        <div className="col-12 grid-margin">
             <div className="w-full">
                 <div className="bg-white p-6 rounded-lg shadow-lg">
-                    <div className="btn gradient-btn"  onClick={() => navigate(-1)}>
-                       Back
+                    <div onClick={() => navigate(-1)} className='btn gradient-btn' >
+                        Back
                     </div>
-
-                    <h4 className="text-xl font-semibold">
+                    <h4 className="text-lg font-semibold">
                         {isActionADD ? 'Add new user' : 'Update user'}
                     </h4>
                     <br />

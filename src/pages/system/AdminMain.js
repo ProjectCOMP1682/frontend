@@ -8,19 +8,22 @@ const AdminMain = () => {
     return (
         <>
             <div className="">
-                <div className="flex overflow-scroll ">
-                    <div className="basis-[12%] h-[100vh]">
+                <div className="flex overflow-hidden">
+                    {/* Sidebar */}
+                    <div className="basis-[12%] min-h-screen overflow-y-auto">
                         <Menu />
                     </div>
-                    <div className="basis-[88%] border overflow-scroll h-[100vh]">
+                    {/* Main Content */}
+                    <div className="basis-[88%] border overflow-y-auto min-h-screen">
                         <Header />
                         <div>
-                            <Outlet></Outlet>
+                            <Outlet />
                         </div>
                     </div>
-
                 </div>
             </div>
+
+
 
 
         </>
