@@ -39,6 +39,7 @@ import ManagePackagePost from "./pages/system/PackagePost/ManagePackagePost";
 import AddPackagePost from "./pages/system/PackagePost/AddPackagePost";
 import ManagePackageCv from "./pages/system/PackageCv/ManagePackageCv";
 import AddPackageCv from "./pages/system/PackageCv/AddPackageCv";
+import AddCompany from "./pages/system/CompanybyCompany/AddCompany";
 // browser router file
 const router = createBrowserRouter([
     {
@@ -108,7 +109,7 @@ const router = createBrowserRouter([
     {
         path: "/admin",
         element: JSON.parse(localStorage.getItem("userData")) &&
-        JSON.parse(localStorage.getItem("userData")).roleCode === "ADMIN"
+            (  JSON.parse(localStorage.getItem("userData")).roleCode === "ADMIN"|| JSON.parse(localStorage.getItem("userData")).roleCode === 'EMPLOYER')
             ? <AdminMain />
             : <Navigate to="/login" />,
         children: [
@@ -256,6 +257,11 @@ const router = createBrowserRouter([
                 element: <AddPackageCv/> // Ví dụ một trang dashboard admin
             },
             // Các route khác của admin ở đây
+            //emloyee
+            {
+                path: "add-company",
+                element: <AddCompany/> // Ví dụ một trang dashboard admin
+            },
         ]
     },
     {

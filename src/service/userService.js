@@ -107,7 +107,14 @@ const handleChangePassword = (data) => {
 }
 
 //================================== COMPANY ============================
+const createCompanyService = (data) => {
+    return axios.post(`/api/create-new-company`, data)
 
+}
+const updateCompanyService = (data) => {
+    return axios.put(`/api/update-company`, data)
+
+}
 const getDetailCompanyByUserId = (userId,companyId) => {
     return axios.get(`/api/get-detail-company-by-userId?userId=${userId}&companyId=${companyId}`)
 
@@ -217,7 +224,7 @@ const updatePackageCv = (data) => {
 export {
   getAllCodeService, getListJobTypeAndCountPost,getListAllCodeService,DeleteAllcodeService,createAllCodeService,  getDetailAllcodeByCode, UpdateAllcodeService,DeleteSkillService, getListSkill,createSkilleService,getDetailSkillById,UpdateSkillService,
     createNewUser,handleLoginService,changePasswordByphone, checkUserPhoneService, getDetailUserById, UpdateUserService,handleChangePassword,BanUserService,UnbanUserService, getAllUsers,
-    getListCompany, getDetailCompanyById, getAllCompany , accecptCompanyService, banCompanyService, unbanCompanyService,getDetailCompanyByUserId,
+    createCompanyService,updateCompanyService, getListCompany, getDetailCompanyById, getAllCompany , accecptCompanyService, banCompanyService, unbanCompanyService,getDetailCompanyByUserId,
     getListPostService,getDetailPostByIdService,banPostService,acceptPostService, getAllPostByAdminService,getAllPostByRoleAdminService,activePostService,getListNoteByPost,
     setActiveTypePackage, getAllPackage,getPackageById,createPackagePost,updatePackagePost,
     getAllPackageCv,setActiveTypePackageCv, getPackageByIdCv,createPackageCv,updatePackageCv

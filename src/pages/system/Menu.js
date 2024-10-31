@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {Link, NavLink} from 'react-router-dom';
-import { FaTachometerAlt, FaList,  FaChevronRight, FaChevronLeft, FaUsers ,FaUserPlus,FaBuilding,FaBriefcase ,FaClipboardList,FaAward,  FaPlus,FaTools,FaStar,FaRegNewspaper ,FaFileAlt,FaMoneyBillWave  } from "react-icons/fa";
+import { FaTachometerAlt, FaList,  FaChevronRight, FaChevronLeft, FaUsers ,FaUserPlus,FaBuilding,FaBriefcase ,FaClipboardList,FaAward,  FaPlus,FaTools,FaStar,FaRegNewspaper ,FaFileAlt,FaMoneyBillWave ,FaPlusCircle  } from "react-icons/fa";
 
 
 const Sidebar = () => {
@@ -17,7 +17,15 @@ const Sidebar = () => {
     const [isExpTypeManagementOpen, setIsExpTypeManagementOpen] = useState(false);
     const [isPackagePostManagementOpen, setIsPackagePostManagementOpen] = useState(false);
     const [isPackageCVManagementOpen, setIsPackageCVManagementOpen] = useState(false);
+// Company
+    // EMPLOYER
+    const [isCreateCompanyOpen, setIsCreateCompanyOpen] = useState(false);
 
+    const [user, setUser] = useState({})
+    useEffect(() => {
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        setUser(userData)
+    }, [])
     // Adjust the sidebar based on screen size
     useEffect(() => {
         const handleResize = () => {
@@ -72,6 +80,11 @@ const Sidebar = () => {
     const togglePackagePostManagement = () => {
         setIsPackagePostManagementOpen(!isPackagePostManagementOpen);
     };
+    // Emloyee
+    const toggleCreateCompany = () => {
+        setIsCreateCompanyOpen(!isCreateCompanyOpen);
+    };
+
     return (
         <div className={`bg-[#9873FF] h-screen transition-width duration-300 ${isCollapsed ? 'w-[80px]' : 'w-[250px]'} px-[25px]`}>
             {/* Sidebar Header */}
@@ -89,7 +102,8 @@ const Sidebar = () => {
                 <FaTachometerAlt color='white' />
                 {!isCollapsed && <p className='text-[14px] leading-[20px] font-bold text-white'>Dashboard</p>}
             </div>
-
+            {user && user.roleCode === "ADMIN" &&
+                <>
             <div className='flex items-center gap-[15px] py-[20px] border-b-[1px] border-[#EDEDED]/[0.3] cursor-pointer' onClick={toggleUserManagement}>
                 <FaUsers  color='white' />
                 {!isCollapsed && <p className='text-[14px] leading-[20px] font-bold text-white'>User Management</p>}
@@ -301,6 +315,28 @@ const Sidebar = () => {
                     </Link>
                 </div>
             )}
+                </>
+            }
+            {user && (user.roleCode === "EMPLOYER") &&
+                <>
+                    <div className='flex items-center gap-[15px] py-[20px] border-b-[1px] border-[#EDEDED]/[0.3] cursor-pointer' onClick={toggleCreateCompany}>
+                        <FaBuilding  color='white' />
+                        {!isCollapsed && <p className='text-[14px] leading-[20px] font-bold text-white'>Company</p>}
+                        {!isCollapsed && (isCreateCompanyOpen ? <FaChevronLeft color='white' /> : <FaChevronRight color='white' />)}
+                    </div>
+                    {/* User Management Tasks */}
+                    {isCreateCompanyOpen && (
+                        <div className={`pl-[30px] transition-all duration-300 ${isCollapsed ? 'opacity-0' : 'opacity-100'}`}>
+                            <Link to="/admin/add-company/" className='flex items-center gap-[10px] py-[10px] cursor-pointer'>
+                                <FaPlusCircle  color='white' />
+                                {!isCollapsed && <p className='text-[14px] leading-[20px] font-normal text-white'>Create new company</p>}
+
+                            </Link>
+
+                        </div>
+                    )}
+                </>
+            }
             {/* Collapse Button */}
             <div className='pt-[15px]'>
                 <div className='flex items-center justify-center'>
