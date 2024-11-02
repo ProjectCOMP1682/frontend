@@ -187,6 +187,19 @@ const acceptPostService = (data) => {
 const getListNoteByPost = (data) => {
     return axios.get(`/api/get-note-by-post?limit=${data.limit}&offset=${data.offset}&id=${data.id}`)
 }
+const createPostService = (data) => {
+    return axios.post(`/api/create-new-post`, data)
+
+}
+const updatePostService = (data) => {
+    return axios.put(`/api/update-post`, data)
+
+}
+const reupPostService = (data) => {
+    return axios.post(`/api/create-reup-post`, data)
+
+}
+
 //======================== PACKAGE ====================================//
 
 const getAllPackage = (data) => {
@@ -226,6 +239,6 @@ export {
     createNewUser,handleLoginService,changePasswordByphone, checkUserPhoneService, getDetailUserById, UpdateUserService,handleChangePassword,BanUserService,UnbanUserService, getAllUsers,
     createCompanyService,updateCompanyService, getListCompany, getDetailCompanyById, getAllCompany , accecptCompanyService, banCompanyService, unbanCompanyService,getDetailCompanyByUserId,
     getListPostService,getDetailPostByIdService,banPostService,acceptPostService, getAllPostByAdminService,getAllPostByRoleAdminService,activePostService,getListNoteByPost,
-    setActiveTypePackage, getAllPackage,getPackageById,createPackagePost,updatePackagePost,
+    setActiveTypePackage, getAllPackage,getPackageById,createPackagePost,updatePackagePost,createPostService,updatePostService,reupPostService,
     getAllPackageCv,setActiveTypePackageCv, getPackageByIdCv,createPackageCv,updatePackageCv
 }

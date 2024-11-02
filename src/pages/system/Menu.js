@@ -18,6 +18,9 @@ const Sidebar = () => {
     const [isPackagePostManagementOpen, setIsPackagePostManagementOpen] = useState(false);
     const [isPackageCVManagementOpen, setIsPackageCVManagementOpen] = useState(false);
 // Company
+    const [isCompanyByCompanyOpen, setIsCompanyByCompanyOpen] = useState(false);
+    const [isPostByCompanyOpen, setIsPostByCompanyOpen] = useState(false);
+
     // EMPLOYER
     const [isCreateCompanyOpen, setIsCreateCompanyOpen] = useState(false);
 
@@ -83,6 +86,13 @@ const Sidebar = () => {
     // Emloyee
     const toggleCreateCompany = () => {
         setIsCreateCompanyOpen(!isCreateCompanyOpen);
+    };
+    //company
+    const toggleCompanyByCompany = () => {
+        setIsCompanyByCompanyOpen(!isCompanyByCompanyOpen);
+    };
+    const togglePostByCompany = () => {
+        setIsPostByCompanyOpen(!isPostByCompanyOpen);
     };
 
     return (
@@ -317,6 +327,40 @@ const Sidebar = () => {
             )}
                 </>
             }
+            {user && (user.roleCode === "COMPANY") &&
+                <>
+                    <div className='flex items-center gap-[15px] py-[20px] border-b-[1px] border-[#EDEDED]/[0.3] cursor-pointer' onClick={togglePostByCompany}>
+                        <FaBuilding  color='white' />
+                        {!isCollapsed && <p className='text-[14px] leading-[20px] font-bold text-white'>Company</p>}
+                    </div>
+                    {/* User Management Tasks */}
+                    {isPostByCompanyOpen && (
+                        <div className={`pl-[30px] transition-all duration-300 ${isCollapsed ? 'opacity-0' : 'opacity-100'}`}>
+                            <Link to="/admin/edit-company/" className='flex items-center gap-[10px] py-[10px] cursor-pointer'>
+                                <FaPlusCircle  color='white' />
+                                {!isCollapsed && <p className='text-[14px] leading-[20px] font-normal text-white'>Company Management</p>}
+
+                            </Link>
+
+                        </div>
+                    )}
+                    <div className='flex items-center gap-[15px] py-[20px] border-b-[1px] border-[#EDEDED]/[0.3] cursor-pointer' onClick={toggleCompanyByCompany}>
+                        <FaRegNewspaper  color='white' />
+                        {!isCollapsed && <p className='text-[14px] leading-[20px] font-bold text-white'>Post Management</p>}
+                    </div>
+                    {/* User Management Tasks */}
+                    {isCompanyByCompanyOpen && (
+                        <div className={`pl-[30px] transition-all duration-300 ${isCollapsed ? 'opacity-0' : 'opacity-100'}`}>
+                            <Link to="/admin/add-post/" className='flex items-center gap-[10px] py-[10px] cursor-pointer'>
+                                <FaPlusCircle  color='white' />
+                                {!isCollapsed && <p className='text-[14px] leading-[20px] font-normal text-white'>Create new post</p>}
+
+                            </Link>
+
+                        </div>
+                    )}
+                </>
+                }
             {user && (user.roleCode === "EMPLOYER") &&
                 <>
                     <div className='flex items-center gap-[15px] py-[20px] border-b-[1px] border-[#EDEDED]/[0.3] cursor-pointer' onClick={toggleCreateCompany}>
