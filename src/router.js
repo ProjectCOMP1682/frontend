@@ -42,6 +42,8 @@ import AddPackageCv from "./pages/system/PackageCv/AddPackageCv";
 import AddCompany from "./pages/system/CompanybyCompany/AddCompany";
 import AddPost from "./pages/system/PostByCompany/AddPost";
 import ManagePostCompany from "./pages/system/PostByCompany/ManagePostCompany";
+import BuyPost from "./pages/system/PostByCompany/BuyPost";
+import PaymentSuccess from "./pages/system/PostByCompany/BuySucces";
 // browser router file
 const router = createBrowserRouter([
     {
@@ -280,6 +282,14 @@ const router = createBrowserRouter([
             {
                 path: "edit-post/:id",
                 element: <AddPost/> // Ví dụ một trang dashboard admin
+            },
+            {
+                path: "buy-post",
+                element: <BuyPost/> // Ví dụ một trang dashboard admin
+            },
+            {
+                path: "payment/success",
+                element: <PaymentSuccess/> // Ví dụ một trang dashboard admin
             },
 
         ]

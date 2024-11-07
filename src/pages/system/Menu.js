@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {Link, NavLink} from 'react-router-dom';
-import { FaTachometerAlt, FaList,  FaChevronRight, FaChevronLeft, FaUsers ,FaUserPlus,FaBuilding,FaBriefcase ,FaClipboardList,FaAward,  FaPlus,FaTools,FaStar,FaRegNewspaper ,FaFileAlt,FaMoneyBillWave ,FaPlusCircle  } from "react-icons/fa";
+import { FaTachometerAlt, FaList,FaShoppingCart, FaCogs, FaChevronRight, FaChevronLeft, FaUsers ,FaUserPlus,FaBuilding,FaBriefcase ,FaClipboardList,FaAward,  FaPlus,FaTools,FaStar,FaRegNewspaper ,FaFileAlt,FaMoneyBillWave ,FaPlusCircle  } from "react-icons/fa";
 
 
 const Sidebar = () => {
@@ -337,7 +337,7 @@ const Sidebar = () => {
                     {isPostByCompanyOpen && (
                         <div className={`pl-[30px] transition-all duration-300 ${isCollapsed ? 'opacity-0' : 'opacity-100'}`}>
                             <Link to="/admin/edit-company/" className='flex items-center gap-[10px] py-[10px] cursor-pointer'>
-                                <FaPlusCircle  color='white' />
+                                <FaCogs  color='white' />
                                 {!isCollapsed && <p className='text-[14px] leading-[20px] font-normal text-white'>Company Management</p>}
 
                             </Link>
@@ -361,7 +361,11 @@ const Sidebar = () => {
                                 {!isCollapsed && <p className='text-[14px] leading-[20px] font-normal text-white'>List of posts</p>}
 
                             </Link>
+                            <Link to="/admin/buy-post/" className='flex items-center gap-[10px] py-[10px] cursor-pointer'>
+                                <FaShoppingCart color='white' />
+                                {!isCollapsed && <p className='text-[14px] leading-[20px] font-normal text-white'>Buy Post Package</p>}
 
+                            </Link>
                         </div>
                     )}
                 </>
