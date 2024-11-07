@@ -12,7 +12,7 @@ import { ExclamationCircleOutlined } from '@ant-design/icons';
 import CommonUtils from '../../../util/CommonUtils';
 import {Input} from 'antd'
 const {confirm} = Modal
-const ManagePost = () => {
+const ManagePostCompany = () => {
     const { id } = useParams()
     const [isSearchBy,setIsSearchBy] = useState(false)
     const [dataPost, setdataPost] = useState([])
@@ -252,7 +252,7 @@ const ManagePost = () => {
     }
     const confirmPost = (id) => {
         confirm({
-            title: 'Are you sure you want to browse this article?',
+                title: 'Are you sure you want to browse this article?',
             icon: <ExclamationCircleOutlined />,    
             onOk() {
                 handleAccecptPost(id, '', 'PS1')
@@ -272,45 +272,41 @@ const ManagePost = () => {
                     <div className="card-body">
                         <h4 className="text-lg font-semibold">List of posts</h4>
 
-                        <Input.Search  onSearch={handleSearch} placeholder={ "Enter post name or code, company name"} allowClear enterButton="Search">
+                        <Input.Search  onSearch={handleSearch} placeholder={ "Enter post name or code"} allowClear enterButton="Search">
                         </Input.Search>
                         <div className='flex items-center'>
-                                <label className='mr-2'>Status Type: </label>
-                                <Select onChange={(value)=> handleOnChangeCensor(value)} style={{width:'50%'}} size='default' defaultValue={id ? censorOptions[0].value : censorOptions[3].value} options={censorOptions}>
+                            <label className='mr-2'>Status Type: </label>
+                            <Select onChange={(value)=> handleOnChangeCensor(value)} style={{width:'50%'}} size='default' defaultValue={id ? censorOptions[0].value : censorOptions[3].value} options={censorOptions}>
 
-                                </Select>
+                            </Select>
                         </div>
-
 
                         <div>Number of posts: {total}</div>
                         <div className="table-responsive pt-2">
                             <table className="table  w-full border border-gray-300">
                                 <thead>
-                                    <tr>
-                                        <th className="border border-gray-300 px-4 py-2">
-                                           No
+                                <tr>
+                                    <th className="border border-gray-300 px-4 py-2">
+                                            No
                                         </th>
-                                        <th className="border border-gray-300 px-4 py-2">
-                                            Post code
-                                        </th >
-                                        <th className="border border-gray-300 px-4 py-2">
-                                            Post Name
+                                    <th className="border border-gray-300 px-4 py-2">
+                                        Post code
                                         </th>
-
-                                        <th className="border border-gray-300 px-4 py-2">
-                                            Company name
+                                    <th className="border border-gray-300 px-4 py-2">
+                                        Post Name
                                         </th>
 
-                                        <th className="border border-gray-300 px-4 py-2">
-                                            Poster Name
+                                    <th className="border border-gray-300 px-4 py-2">
+
+                                        Poster Name
                                         </th>
-                                        <th className="border border-gray-300 px-4 py-2">
-                                            End date
+                                    <th className="border border-gray-300 px-4 py-2">
+                                        End date
                                         </th>
-                                        <th className="border border-gray-300 px-4 py-2">
-                                            Status
+                                    <th className="border border-gray-300 px-4 py-2">
+                                        Status
                                         </th>
-                                        <th className="border border-gray-300 px-4 py-2">
+                                    <th className="border border-gray-300 px-4 py-2">
                                             Action
                                         </th>
                                     </tr>
@@ -320,54 +316,55 @@ const ManagePost = () => {
                                         dataPost.map((item, index) => {
                                             let date = moment.unix(item.timeEnd / 1000).format('DD/MM/YYYY')
                                             return (
-                                                <tr key={index} className="bg-white hover:bg-gray-50">
-                                                    <td className="border border-gray-300 px-4 py-2">{index + 1 + numberPage * PAGINATION.pagerow}</td>
-                                                    <td className="border border-gray-300 px-4 py-2">{item.id}</td>
-                                                    <td className="border border-gray-300 px-4 py-2">{item.postDetailData.name}</td>
+                                                    <tr key={index} className="bg-white hover:bg-gray-50">
+                                                        <td className="border border-gray-300 px-4 py-2">{index + 1 + numberPage * PAGINATION.pagerow}</td>
+                                                        <td className="border border-gray-300 px-4 py-2">{item.id}</td>
+                                                        <td className="border border-gray-300 px-4 py-2">{item.postDetailData.name}</td>
 
-                                                    <td className="border border-gray-300 px-4 py-2">{item.userPostData.userCompanyData.name}</td>
+                                                        <td className="border border-gray-300 px-4 py-2">{`${item.userPostData.firstName} ${item.userPostData.lastName}`}</td>
+                                                        <td className="border border-gray-300 px-4 py-2">{date}</td>
+                                                        <td className="border border-gray-300 px-4 py-2"><label className={item.statusPostData.code == 'PS1' ? 'badge badge-success' : (item.statusPostData.code == 'PS3' ? 'badge badge-warning'  : 'badge badge-danger')}>{item.statusPostData.value}</label></td>
 
-                                                    <td className="border border-gray-300 px-4 py-2">{`${item.userPostData.firstName} ${item.userPostData.lastName}`}</td>
-                                                    <td className="border border-gray-300 px-4 py-2">{date}</td>
-                                                    <td className="border border-gray-300 px-4 py-2"><label className={`inline-block rounded-full px-3 py-1 text-sm font-semibold ${item.statusPostData.code == 'PS1' ? 'bg-green-500 text-white px-2 py-1 rounded' : (item.statusPostData.code == 'PS3' ?'bg-yellow-500 text-white ' : 'bg-red-500 text-white ')}`}>{item.statusPostData.value}</label></td>
-                                                    <td className="border border-gray-300 px-4 py-2">
+                                                        <td className="border border-gray-300 px-4 py-2">
                                                         <Link style={{color:'#4B49AC'}} to={`/admin/note/${item.id}`}>Note</Link>
                                                         &nbsp; &nbsp;
-                                                        {
+                                                        {(user.roleCode == 'COMPANY' || user.roleCode == 'EMPLOYER') &&
+                                                            <>
+                                                                <Link style={{ color: '#4B49AC' }} to={`/admin/list-cv/${item.id}/`}>View CV apply</Link>
+                                                                &nbsp; &nbsp;
+                                                            </>
+                                                        }
+                                                        { 
                                                         item.statusCode.code !== 'PS4' &&
-                                                        <Link style={{ color: '#4B49AC' }} to={`/admin/view-post/${item.id}/`}>View details</Link>
+                                                        <Link style={{ color: '#4B49AC' }} to={`/admin/edit-post/${item.id}/`}>{user?.roleCode === "ADMIN" ? 'View details' : 'Edit'}</Link>
                                                         }
                                                         &nbsp; &nbsp;
-                                                        {item.statusCode === 'PS1' ? (
-                                                            <>
-                                                                <a style={{ color: '#4B49AC', cursor: 'pointer' }} onClick={() => setPropsModal({
-                                                                    isActive: true,
-                                                                    handlePost: handleBanPost,
-                                                                    postId: item.id
-                                                                })}>Ban</a>
-                                                                &nbsp;&nbsp;
-                                                            </>
-                                                        ) : item.statusCode === 'PS4' ? (
-                                                            <>
+                                                        {user.roleCode == 'ADMIN' ? (item.statusCode == 'PS1' ? <>
+                                                            <a style={{ color: '#4B49AC', cursor: 'pointer' }} onClick={() => setPropsModal({
+                                                                isActive: true,
+                                                                handlePost: handleBanPost,
+                                                                postId: item.id
+                                                            })}  >Chặn</a>
+                                                            &nbsp; &nbsp;
+                                                        </>
+                                                            : item.statusCode == 'PS4' ? <>
                                                                 <a style={{ color: '#4B49AC', cursor: 'pointer' }} onClick={() => setPropsModal({
                                                                     isActive: true,
                                                                     handlePost: handleActivePost,
                                                                     postId: item.id
-                                                                })}>Unban</a>
-                                                            </>
-                                                        ) : (
-                                                            <>
-                                                                <a style={{ color: '#4B49AC', cursor: 'pointer' }} onClick={() => confirmPost(item.id)}>Browse</a>
-                                                                {item.statusCode !== 'PS2' && (
+                                                                })}  >Mở lại</a>
+                                                            </> : <>
+                                                                <a style={{ color: '#4B49AC', cursor: 'pointer' }} onClick={() => confirmPost(item.id)}  >Browse</a>
+                                                                {
+                                                                    item.statusCode !== 'PS2' &&
                                                                     <a style={{ color: '#4B49AC', cursor: 'pointer', marginLeft: '10px' }} onClick={() => setPropsModal({
                                                                         isActive: true,
                                                                         handlePost: handleAccecptPost,
                                                                         postId: item.id
-                                                                    })}>Reject</a>
-                                                                )}
-                                                            </>
-                                                        )}
-
+                                                                    })}  >Reject</a>
+                                                                }
+                                                            </>) : <></>
+                                                        }
                                                     </td>
                                                 </tr>
                                             )
@@ -381,6 +378,7 @@ const ManagePost = () => {
                                                 <div style={{ textAlign: 'center' }}>
 
                                                     No data available
+
                                                 </div>
                                             )
                             }
@@ -417,4 +415,4 @@ const ManagePost = () => {
     )
 }
 
-export default ManagePost
+export default ManagePostCompany

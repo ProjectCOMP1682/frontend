@@ -40,7 +40,8 @@ import AddPackagePost from "./pages/system/PackagePost/AddPackagePost";
 import ManagePackageCv from "./pages/system/PackageCv/ManagePackageCv";
 import AddPackageCv from "./pages/system/PackageCv/AddPackageCv";
 import AddCompany from "./pages/system/CompanybyCompany/AddCompany";
-import AddPost from "./pages/system/Post/AddPost";
+import AddPost from "./pages/system/PostByCompany/AddPost";
+import ManagePostCompany from "./pages/system/PostByCompany/ManagePostCompany";
 // browser router file
 const router = createBrowserRouter([
     {
@@ -153,7 +154,7 @@ const router = createBrowserRouter([
                 element: <ManagePost/> // Ví dụ một trang dashboard admin
             },
             {
-                path: "edit-post/:id",
+                path: "view-post/:id",
                 element: <ViewPost/> // Ví dụ một trang dashboard admin
             },
             {
@@ -272,6 +273,15 @@ const router = createBrowserRouter([
                 path: "add-post",
                 element: <AddPost/> // Ví dụ một trang dashboard admin
             },
+            {
+                path: "list-post",
+                element: <ManagePostCompany/> // Ví dụ một trang dashboard admin
+            },
+            {
+                path: "edit-post/:id",
+                element: <AddPost/> // Ví dụ một trang dashboard admin
+            },
+
         ]
     },
     {

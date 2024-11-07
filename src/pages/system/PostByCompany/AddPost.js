@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import DatePicker from '../../../components/input/DatePicker';
-import { createPostService, updatePostService, getDetailPostByIdService, getDetailCompanyByUserId } from '../../../service/userService';
+import { createPostService, updatePostService, getDetailPostByIdService, reupPostService, getDetailCompanyByUserId } from '../../../service/userService';
 import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 import 'react-markdown-editor-lite/lib/index.css';
@@ -10,8 +10,10 @@ import { useFetchAllcode } from '../../../util/fetch';
 import {  useParams } from "react-router-dom";
 import { Spinner, Modal } from 'reactstrap'
 import localization from 'moment/locale/vi';
+import CommonUtils from "../../../util/CommonUtils";
 import moment from 'moment';
 import '../../../components/modal/modal.css'
+import ReupPostModal from '../../../components/modal/ReupPostModal';
 const AddPost = () => {
     const today = new Date();
     const mdParser = new MarkdownIt();
@@ -154,7 +156,7 @@ const AddPost = () => {
                     userId: user.id,
                     isHot: inputValues.isHot
                 })
-                setTimeout(() => { 
+                setTimeout(() => {
                     setIsLoading(false)
                     if (res && res.errCode === 0) {
                         fetchCompany(user.id)
@@ -209,7 +211,20 @@ const AddPost = () => {
             }, 1000);
         }
     }
+    let handleReupPost = async (timeEnd) => {
+        let res = await reupPostService({
+            userId: user.id,
+            postId: id,
+            timeEnd: timeEnd
+        })
+        if (res && res.errCode === 0) {
+            toast.success(res.errMessage)
 
+        } else {
+            toast.error(res.errMessage)
+        }
+    }
+    const isExpired = timeEnd ? moment(timeEnd, 'DD/MM/YYYY').isBefore(moment()) : false;
     return (
         <>
             <div className="">
@@ -391,6 +406,8 @@ const AddPost = () => {
                                     </div>
 
                                 </div>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', width: '10%' }}>
+
                                 {
                                         user.roleCode !== "ADMIN" &&
                                         <>
@@ -405,6 +422,21 @@ const AddPost = () => {
                                         </>
                                 }
 
+                                {
+                                    id && user.roleCode !== "ADMIN" && isExpired &&
+                                    <>
+
+                                        <button onClick={() => setPropsModal({
+                                            ...propsModal,
+                                            isActive: true,
+                                            handlePost: handleReupPost
+                                        })} type="button" className='btn gradient-btn'>
+                                            <i className="ti-reload btn1-icon-prepend"></i>
+                                            Reup
+                                        </button>
+                                    </>
+                                }
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -422,6 +454,10 @@ const AddPost = () => {
 
                 </Modal>
             }
+            <ReupPostModal isOpen={propsModal.isActive} onHide={() => setPropsModal({
+                ...propsModal,
+                isActive: false,
+            })} id={propsModal.postId} handleFunc={propsModal.handlePost} />
 
         </>
     )
