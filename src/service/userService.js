@@ -234,7 +234,7 @@ const getPaymentLink = (id,amount) => {
 const paymentOrderSuccessService = (data) => {
     return axios.post(`/api/payment-success`, data)
 }
-//======================== PACKAGE CV ====================================//
+//======================== PACKAGE Cv ====================================//
 
 const getAllPackageCv = (data) => {
     return axios.get(`/api/get-all-package-cv?limit=${data.limit}&offset=${data.offset}&search=${data.search}`)

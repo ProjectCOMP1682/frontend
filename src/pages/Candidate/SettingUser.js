@@ -127,7 +127,7 @@ const SettingUser = () => {
     let handleOnChangeCheckBox = (e) => {
         const {name,checked} = e.target
         if (name === 'isFindJob' && !inputValues.file) {
-            toast.error('You need to upload your CV before selecting this feature')
+            toast.error('You need to upload your Cv before selecting this feature')
         } else if (name === 'isTakeMail' && !inputValues.jobType && !inputValues.jobProvince) {
             toast.error('You need to select your field and work area before selecting this feature.')
         }

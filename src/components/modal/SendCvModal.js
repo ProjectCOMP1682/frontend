@@ -12,9 +12,9 @@ import {toast} from 'react-toastify'
         });
         const [typeCv, setTypeCv] = useState('pcCv');
 
-        // Lấy CV online của người dùng nếu có
+        // Lấy Cv online của người dùng nếu có
         const getFileCv = async (id) => {
-            // Giả sử `getDetailUserById` trả về dữ liệu người dùng bao gồm file CV
+            // Giả sử `getDetailUserById` trả về dữ liệu người dùng bao gồm file Cv
             let res = await getDetailUserById(id);
             setInputValue((prev) => ({
                 ...prev,
@@ -38,17 +38,17 @@ import {toast} from 'react-toastify'
             }));
         };
 
-        // Xử lý chọn loại CV
+        // Xử lý chọn loại Cv
         const radioOnChange = (e) => {
             const { value } = e.target;
             if (value === 'userCv' && !inputValue.linkFileUser) {
-                toast.warn('Currently not posting CV online');
+                toast.warn('Currently not posting Cv online');
             } else {
                 setTypeCv(value);
             }
         };
 
-        // Xử lý file CV
+        // Xử lý file Cv
         const handleOnChangeFile = async (event) => {
             const file = event.target.files[0];
             if (file && file.size <= 2097152) { // Giới hạn kích thước file 2MB
@@ -66,7 +66,7 @@ import {toast} from 'react-toastify'
             }
         };
 
-        // Gửi CV
+        // Gửi Cv
         const handleSendCV = async () => {
             setIsLoading(true);
             const cvSend = typeCv === 'userCv' ? inputValue.fileUser : inputValue.file;
@@ -78,10 +78,10 @@ import {toast} from 'react-toastify'
             });
             setIsLoading(false);
             if (kq.errCode === 0) {
-                toast.success("CV sent successfully");
+                toast.success("Cv sent successfully");
                 props.onHide();
             } else {
-                toast.error("CV sent failed");
+                toast.error("Cv sent failed");
             }
         };
 

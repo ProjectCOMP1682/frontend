@@ -38,7 +38,7 @@ const JobDetails = () => {
             if (userData)
                 setAcitveModal(true)
             else {
-                toast.error("Please login to submit your CV.")
+                toast.error("Please login to submit your Cv.")
                 setTimeout(() => {
                     localStorage.setItem("lastUrl", window.location.href)
                     navigate.push("/login")

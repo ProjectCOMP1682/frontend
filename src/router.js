@@ -45,6 +45,8 @@ import ManagePostCompany from "./pages/system/PostByCompany/ManagePostCompany";
 import BuyPost from "./pages/system/PostByCompany/BuyPost";
 import PaymentSuccess from "./pages/system/PostByCompany/BuySucces";
 import SettingUser from "./pages/Candidate/SettingUser";
+import ManageCvCandidate from "./pages/Candidate/ManageCvCandidate";
+import UserCv from "./pages/system/Cv/UserCv";
 // browser router file
 const router = createBrowserRouter([
     {
@@ -112,6 +114,20 @@ const router = createBrowserRouter([
                 element: JSON.parse(localStorage.getItem("userData")) &&
                 JSON.parse(localStorage.getItem("userData")).roleCode === "CANDIDATE"
                     ? <SettingUser />
+                    : <Navigate to="/login" />
+            },
+            {
+                path: "/candidate/cv-post",
+                element: JSON.parse(localStorage.getItem("userData")) &&
+                JSON.parse(localStorage.getItem("userData")).roleCode === "CANDIDATE"
+                    ? <ManageCvCandidate />
+                    : <Navigate to="/login" />
+            },
+            {
+                path: "/candidate/cv-detail/:id",
+                element: JSON.parse(localStorage.getItem("userData")) &&
+                JSON.parse(localStorage.getItem("userData")).roleCode === "CANDIDATE"
+                    ? <UserCv />
                     : <Navigate to="/login" />
             },
 

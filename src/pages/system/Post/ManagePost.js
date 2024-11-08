@@ -270,7 +270,7 @@ const ManagePost = () => {
             <div className="col-12 grid-margin">
                 <div className="card">
                     <div className="card-body">
-                        <h4 className="text-lg font-semibold">List of posts</h4>
+                        <h4 className="card-title">List of posts</h4>
 
                         <Input.Search  onSearch={handleSearch} placeholder={ "Enter post name or code, company name"} allowClear enterButton="Search">
                         </Input.Search>

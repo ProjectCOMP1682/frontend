@@ -87,7 +87,7 @@ const AddpackageCv = () => {
                         <div onClick={() => navigate(-1)} className='btn gradient-btn' >
                             Back
                         </div>
-                        <h4 className="card-title">{isActionADD === true ? 'Add new CV package' : 'Update CV package'}</h4>
+                        <h4 className="card-title">{isActionADD === true ? 'Add new Cv package' : 'Update Cv package'}</h4>
                         <br></br>
                     <form className="space-y-6">
                         <div className="grid grid-cols-2 gap-6">
