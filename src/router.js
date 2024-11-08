@@ -44,6 +44,7 @@ import AddPost from "./pages/system/PostByCompany/AddPost";
 import ManagePostCompany from "./pages/system/PostByCompany/ManagePostCompany";
 import BuyPost from "./pages/system/PostByCompany/BuyPost";
 import PaymentSuccess from "./pages/system/PostByCompany/BuySucces";
+import SettingUser from "./pages/Candidate/SettingUser";
 // browser router file
 const router = createBrowserRouter([
     {
@@ -104,6 +105,13 @@ const router = createBrowserRouter([
                 element: JSON.parse(localStorage.getItem("userData")) &&
                 JSON.parse(localStorage.getItem("userData")).roleCode === "CANDIDATE"
                     ? <ChangePassword />
+                    : <Navigate to="/login" />
+            },
+            {
+                path: "/candidate/usersetting",
+                element: JSON.parse(localStorage.getItem("userData")) &&
+                JSON.parse(localStorage.getItem("userData")).roleCode === "CANDIDATE"
+                    ? <SettingUser />
                     : <Navigate to="/login" />
             },
 

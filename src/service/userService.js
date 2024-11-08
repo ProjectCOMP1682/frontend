@@ -57,6 +57,11 @@ const getDetailSkillById = (id) => {
     return axios.get(`/api/get-detail-skill-by-id?id=${id}`)
 
 }
+const getAllSkillByJobCode = (categoryJobCode) => {
+    return axios.get(`/api/get-all-skill-by-job-code?categoryJobCode=${categoryJobCode}`)
+
+}
+
 //==================USER==========================//
 const getAllUsers = (data) => {
     return axios.get(`/api/get-all-user?limit=${data.limit}&offset=${data.offset}&search=${data.search}`)
@@ -105,7 +110,10 @@ const UpdateUserService = (data) => {
 const handleChangePassword = (data) => {
     return axios.post(`/api/changepassword`, data)
 }
+const UpdateUserSettingService = (data) => {
+    return axios.put(`/api/setDataUserSetting`, data)
 
+}
 //================================== COMPANY ============================
 const createCompanyService = (data) => {
     return axios.post(`/api/create-new-company`, data)
@@ -244,8 +252,8 @@ const updatePackageCv = (data) => {
     return axios.put(`/api/update-package-cv`, data)
 }
 export {
-  getAllCodeService, getListJobTypeAndCountPost,getListAllCodeService,DeleteAllcodeService,createAllCodeService,  getDetailAllcodeByCode, UpdateAllcodeService,DeleteSkillService, getListSkill,createSkilleService,getDetailSkillById,UpdateSkillService,
-    createNewUser,handleLoginService,changePasswordByphone, checkUserPhoneService, getDetailUserById, UpdateUserService,handleChangePassword,BanUserService,UnbanUserService, getAllUsers,
+  getAllCodeService, getListJobTypeAndCountPost,getListAllCodeService,DeleteAllcodeService,createAllCodeService,  getDetailAllcodeByCode, UpdateAllcodeService,DeleteSkillService, getListSkill,createSkilleService,getDetailSkillById,UpdateSkillService,getAllSkillByJobCode,
+    createNewUser,handleLoginService,changePasswordByphone, checkUserPhoneService, getDetailUserById, UpdateUserService,handleChangePassword,BanUserService,UnbanUserService, getAllUsers,UpdateUserSettingService,
     createCompanyService,updateCompanyService, getListCompany, getDetailCompanyById, getAllCompany , accecptCompanyService, banCompanyService, unbanCompanyService,getDetailCompanyByUserId,
     getListPostService,getDetailPostByIdService,banPostService,acceptPostService, getAllPostByAdminService,getAllPostByRoleAdminService,activePostService,getListNoteByPost, createPostService,updatePostService,reupPostService,
     setActiveTypePackage, getAllPackage,getPackageById,createPackagePost,updatePackagePost,getPackageByType,getPaymentLink,paymentOrderSuccessService,
