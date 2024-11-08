@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Breadcrumb from '../breadcrumb/Breadcrumb';
-import {useParams} from 'react-router-dom'
+import {useNavigate, useParams} from 'react-router-dom'
 import {toast} from 'react-toastify'
 import {getDetailPostByIdService} from '../../service/userService'
 import moment from 'moment';
@@ -9,7 +9,7 @@ import {BiDollarCircle} from "react-icons/bi";
 import {HiLocationMarker} from "react-icons/hi"
 import {BsCalendarWeek, BsTelephone} from "react-icons/bs";
 import { FaBriefcase,FaClipboardList,FaHashtag,FaClock,FaGenderless,FaMapMarkerAlt,FaBuilding,FaGlobe,FaFileInvoice,FaUsers } from 'react-icons/fa';
-
+import SendCvModal from "../modal/SendCvModal";
 
 const JobDetails = () => {
     // get id from url query params
@@ -29,26 +29,26 @@ const JobDetails = () => {
             setDataPost(res.data)
         }
     }
+    const navigate = useNavigate();
 
 
-    // const handleOpenModal = () => {
-    //     if (dataPost.timeEnd && CommonUtils.formatDate(dataPost.timeEnd) > 0) {
-    //         const userData = JSON.parse(localStorage.getItem('userData'));
-    //         if (userData)
-    //             setAcitveModal(true)
-    //         else {
-    //             toast.error("Xin hãy đăng nhập để có thể thực hiện nộp CV")
-    //             setTimeout(() => {
-    //                 localStorage.setItem("lastUrl", window.location.href)
-    //                 history.push("/login")
-    //             }, 1000)
-    //         }
-    //
-    //     } else
-    //         toast.error("Hạn ứng tuyển đã hết")
-    // }
+    const handleOpenModal = () => {
+        if (dataPost.timeEnd && CommonUtils.formatDate(dataPost.timeEnd) > 0) {
+            const userData = JSON.parse(localStorage.getItem('userData'));
+            if (userData)
+                setAcitveModal(true)
+            else {
+                toast.error("Please login to submit your CV.")
+                setTimeout(() => {
+                    localStorage.setItem("lastUrl", window.location.href)
+                    navigate.push("/login")
+                }, 1000)
+            }
 
-    // console.log(data);
+        } else
+            toast.error("Application deadline has expired.")
+    }
+
     return (
         <>
             {dataPost.companyData &&
@@ -127,7 +127,7 @@ const JobDetails = () => {
                                         </div>
                                     </div>
 
-                                    <button className='btn w-full gradient-btn  '>
+                                    <button className='btn w-full gradient-btn  ' onClick={() => handleOpenModal()}>
                                         Apply Now
                                     </button>
 
@@ -173,6 +173,7 @@ const JobDetails = () => {
 
                         </div>
                     </div>
+                    <SendCvModal isOpen={isActiveModal} onHide={() => setAcitveModal(false)} postId={id} />
                 </main>
             }
         </>
