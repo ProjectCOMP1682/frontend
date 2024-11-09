@@ -341,6 +341,21 @@ const Sidebar = () => {
                                 {!isCollapsed && <p className='text-[14px] leading-[20px] font-normal text-white'>Company Management</p>}
 
                             </Link>
+                            <Link to="/admin/recruitment/" className='flex items-center gap-[10px] py-[10px] cursor-pointer'>
+                                <FaPlusCircle  color='white' />
+                                {!isCollapsed && <p className='text-[14px] leading-[20px] font-normal text-white'>Add HR staff</p>}
+
+                            </Link>
+                            <Link to="/admin/list-employer/" className='flex items-center gap-[10px] py-[10px] cursor-pointer'>
+                                <FaList  color='white' />
+                                {!isCollapsed && <p className='text-[14px] leading-[20px] font-normal text-white'>HR staff list</p>}
+
+                            </Link>
+                            <Link to="/admin/add-user/" className='flex items-center gap-[10px] py-[10px] cursor-pointer'>
+                                <FaPlusCircle  color='white' />
+                                {!isCollapsed && <p className='text-[14px] leading-[20px] font-normal text-white'>Create HR staff account</p>}
+
+                            </Link>
 
                         </div>
                     )}

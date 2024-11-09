@@ -47,6 +47,9 @@ import PaymentSuccess from "./pages/system/PostByCompany/BuySucces";
 import SettingUser from "./pages/Candidate/SettingUser";
 import ManageCvCandidate from "./pages/Candidate/ManageCvCandidate";
 import UserCv from "./pages/system/Cv/UserCv";
+import ManageCv from "./pages/system/Cv/ManageCv";
+import Recruitment from "./pages/system/CompanybyCompany/Recruitment";
+import ManageEmployer from "./pages/system/CompanybyCompany/ManageEmployer";
 // browser router file
 const router = createBrowserRouter([
     {
@@ -296,12 +299,32 @@ const router = createBrowserRouter([
                 element: <AddCompany/> // Ví dụ một trang dashboard admin
             },
             {
+                path: "recruitment",
+                element: <Recruitment/> // Ví dụ một trang dashboard admin
+            },
+            {
+                path: "list-employer",
+                element: <ManageEmployer/> // Ví dụ một trang dashboard admin
+            },
+            {
+                path: "add-user",
+                element: <AddUser/> // Ví dụ một trang dashboard admin
+            },
+            {
                 path: "add-post",
                 element: <AddPost/> // Ví dụ một trang dashboard admin
             },
             {
                 path: "list-post",
                 element: <ManagePostCompany/> // Ví dụ một trang dashboard admin
+            },
+            {
+                path: "list-cv/:id",
+                element: <ManageCv/> // Ví dụ một trang dashboard admin
+            },
+            {
+                path: "user-cv/:id",
+                element: <UserCv/> // Ví dụ một trang dashboard admin
             },
             {
                 path: "edit-post/:id",
