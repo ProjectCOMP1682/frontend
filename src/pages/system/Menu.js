@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {Link, NavLink} from 'react-router-dom';
-import { FaTachometerAlt, FaList,FaShoppingCart, FaCogs, FaChevronRight, FaChevronLeft, FaUsers ,FaUserPlus,FaBuilding,FaBriefcase ,FaClipboardList,FaAward,  FaPlus,FaTools,FaStar,FaRegNewspaper ,FaFileAlt,FaMoneyBillWave ,FaPlusCircle  } from "react-icons/fa";
+import { FaTachometerAlt, FaList,FaShoppingCart, FaCogs, FaChevronRight, FaChevronLeft, FaUsers ,FaUserPlus,FaBuilding,FaBriefcase ,FaClipboardList,FaAward, FaUserTie , FaPlus,FaTools,FaStar,FaRegNewspaper ,FaFileAlt,FaMoneyBillWave ,FaPlusCircle  } from "react-icons/fa";
 
 
 const Sidebar = () => {
@@ -20,6 +20,7 @@ const Sidebar = () => {
 // Company
     const [isCompanyByCompanyOpen, setIsCompanyByCompanyOpen] = useState(false);
     const [isPostByCompanyOpen, setIsPostByCompanyOpen] = useState(false);
+    const [isCvByCompanyOpen, setIsCvByCompanyOpen] = useState(false);
 
     // EMPLOYER
     const [isCreateCompanyOpen, setIsCreateCompanyOpen] = useState(false);
@@ -93,6 +94,9 @@ const Sidebar = () => {
     };
     const togglePostByCompany = () => {
         setIsPostByCompanyOpen(!isPostByCompanyOpen);
+    };
+    const toggleCvByCompany = () => {
+        setIsCvByCompanyOpen(!isCvByCompanyOpen);
     };
 
     return (
@@ -381,6 +385,26 @@ const Sidebar = () => {
                                 {!isCollapsed && <p className='text-[14px] leading-[20px] font-normal text-white'>Buy Post Package</p>}
 
                             </Link>
+                        </div>
+                    )}
+                    <div className='flex items-center gap-[15px] py-[20px] border-b-[1px] border-[#EDEDED]/[0.3] cursor-pointer' onClick={toggleCvByCompany}>
+                        <FaUserTie   color='white' />
+                        {!isCollapsed && <p className='text-[14px] leading-[20px] font-bold text-white'>Search for candidates</p>}
+                    </div>
+                    {/* User Management Tasks */}
+                    {isCvByCompanyOpen && (
+                        <div className={`pl-[30px] transition-all duration-300 ${isCollapsed ? 'opacity-0' : 'opacity-100'}`}>
+                            <Link to="/admin/buy-cv/" className='flex items-center gap-[10px] py-[10px] cursor-pointer'>
+                                <FaPlusCircle  color='white' />
+                                {!isCollapsed && <p className='text-[14px] leading-[20px] font-normal text-white'>Buy candidate views</p>}
+
+                            </Link>
+                            <Link to="/admin/list-candiate/" className='flex items-center gap-[10px] py-[10px] cursor-pointer'>
+                                <FaList  color='white' />
+                                {!isCollapsed && <p className='text-[14px] leading-[20px] font-normal text-white'>List of candidates</p>}
+
+                            </Link>
+
                         </div>
                     )}
                 </>

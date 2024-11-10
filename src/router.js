@@ -50,6 +50,8 @@ import UserCv from "./pages/system/Cv/UserCv";
 import ManageCv from "./pages/system/Cv/ManageCv";
 import Recruitment from "./pages/system/CompanybyCompany/Recruitment";
 import ManageEmployer from "./pages/system/CompanybyCompany/ManageEmployer";
+import BuyCv from "./pages/system/PackageCv/BuyCv";
+import BuySuccesCv from "./pages/system/PackageCv/BuySuccesCv";
 // browser router file
 const router = createBrowserRouter([
     {
@@ -337,6 +339,18 @@ const router = createBrowserRouter([
             {
                 path: "payment/success",
                 element: <PaymentSuccess/> // Ví dụ một trang dashboard admin
+            },
+            {
+                path: "list-candiate",
+                element: <ManageCvCandidate/> // Ví dụ một trang dashboard admin
+            },
+            {
+                path: "buy-cv",
+                element: <BuyCv/> // Ví dụ một trang dashboard admin
+            },
+            {
+                path: "paymentCv/success",
+                element: <BuySuccesCv/> // Ví dụ một trang dashboard admin
             },
 
         ]
