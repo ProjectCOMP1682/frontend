@@ -410,18 +410,61 @@ const Sidebar = () => {
                 </>
                 }
             {user && (user.roleCode === "EMPLOYER") &&
-                <>
+                <> {
+                       !user.companyId &&(
                     <div className='flex items-center gap-[15px] py-[20px] border-b-[1px] border-[#EDEDED]/[0.3] cursor-pointer' onClick={toggleCreateCompany}>
                         <FaBuilding  color='white' />
                         {!isCollapsed && <p className='text-[14px] leading-[20px] font-bold text-white'>Company</p>}
-                        {!isCollapsed && (isCreateCompanyOpen ? <FaChevronLeft color='white' /> : <FaChevronRight color='white' />)}
-                    </div>
+                    </div> )}
                     {/* User Management Tasks */}
                     {isCreateCompanyOpen && (
                         <div className={`pl-[30px] transition-all duration-300 ${isCollapsed ? 'opacity-0' : 'opacity-100'}`}>
                             <Link to="/admin/add-company/" className='flex items-center gap-[10px] py-[10px] cursor-pointer'>
                                 <FaPlusCircle  color='white' />
                                 {!isCollapsed && <p className='text-[14px] leading-[20px] font-normal text-white'>Create new company</p>}
+
+                            </Link>
+
+                        </div>
+                    )}
+                }
+                    {
+                        user.companyId &&(
+                            <div className='flex items-center gap-[15px] py-[20px] border-b-[1px] border-[#EDEDED]/[0.3] cursor-pointer' onClick={toggleCompanyByCompany}>
+                                <FaRegNewspaper  color='white' />
+                                {!isCollapsed && <p className='text-[14px] leading-[20px] font-bold text-white'>Post Management</p>}
+                            </div> )}
+                    {isCompanyByCompanyOpen && (
+                        <div className={`pl-[30px] transition-all duration-300 ${isCollapsed ? 'opacity-0' : 'opacity-100'}`}>
+                            <Link to="/admin/add-post/" className='flex items-center gap-[10px] py-[10px] cursor-pointer'>
+                                <FaPlusCircle  color='white' />
+                                {!isCollapsed && <p className='text-[14px] leading-[20px] font-normal text-white'>Create new post</p>}
+
+                            </Link>
+                            <Link to="/admin/list-post/" className='flex items-center gap-[10px] py-[10px] cursor-pointer'>
+                                <FaList  color='white' />
+                                {!isCollapsed && <p className='text-[14px] leading-[20px] font-normal text-white'>List of posts</p>}
+
+                            </Link>
+
+                        </div>
+                    )}
+                    {
+                        user.companyId &&(
+                            <div className='flex items-center gap-[15px] py-[20px] border-b-[1px] border-[#EDEDED]/[0.3] cursor-pointer' onClick={toggleCvByCompany}>
+                                <FaUserTie   color='white' />
+                                {!isCollapsed && <p className='text-[14px] leading-[20px] font-bold text-white'>Search for candidates</p>}
+                            </div> )}
+                    {isCvByCompanyOpen && (
+                        <div className={`pl-[30px] transition-all duration-300 ${isCollapsed ? 'opacity-0' : 'opacity-100'}`}>
+                            <Link to="/admin/buy-cv/" className='flex items-center gap-[10px] py-[10px] cursor-pointer'>
+                                <FaPlusCircle  color='white' />
+                                {!isCollapsed && <p className='text-[14px] leading-[20px] font-normal text-white'>Buy candidate views</p>}
+
+                            </Link>
+                            <Link to="/admin/list-candiate/" className='flex items-center gap-[10px] py-[10px] cursor-pointer'>
+                                <FaList  color='white' />
+                                {!isCollapsed && <p className='text-[14px] leading-[20px] font-normal text-white'>List of candidates</p>}
 
                             </Link>
 
