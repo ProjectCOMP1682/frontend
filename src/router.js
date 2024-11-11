@@ -52,6 +52,8 @@ import Recruitment from "./pages/system/CompanybyCompany/Recruitment";
 import ManageEmployer from "./pages/system/CompanybyCompany/ManageEmployer";
 import BuyCv from "./pages/system/PackageCv/BuyCv";
 import BuySuccesCv from "./pages/system/PackageCv/BuySuccesCv";
+import FilterCv from "./pages/system/Cv/FilterCv";
+import DetailFilterUser from "./pages/system/Cv/DetailFilterUser";
 // browser router file
 const router = createBrowserRouter([
     {
@@ -342,8 +344,13 @@ const router = createBrowserRouter([
             },
             {
                 path: "list-candiate",
-                element: <ManageCvCandidate/> // Ví dụ một trang dashboard admin
+                element: <FilterCv/> // Ví dụ một trang dashboard admin
             },
+            {
+                path: "candiate/:id",
+                element: <DetailFilterUser/> // Ví dụ một trang dashboard admin
+            },
+
             {
                 path: "buy-cv",
                 element: <BuyCv/> // Ví dụ một trang dashboard admin
