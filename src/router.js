@@ -55,6 +55,7 @@ import BuySuccesCv from "./pages/system/PackageCv/BuySuccesCv";
 import FilterCv from "./pages/system/Cv/FilterCv";
 import DetailFilterUser from "./pages/system/Cv/DetailFilterUser";
 import HistoryTradePost from "./pages/system/HistoryTrade/HistoryTradePost";
+import HistoryTradeCv from "./pages/system/HistoryTrade/HistoryTradeCv";
 // browser router file
 const router = createBrowserRouter([
     {
@@ -363,6 +364,10 @@ const router = createBrowserRouter([
             {
                 path: "history-post",
                 element: <HistoryTradePost/> // Ví dụ một trang dashboard admin
+            },
+            {
+                path: "history-cv",
+                element: <HistoryTradeCv/> // Ví dụ một trang dashboard admin
             },
 
         ]
