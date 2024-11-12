@@ -247,6 +247,9 @@ const getPaymentLink = (id,amount) => {
 const paymentOrderSuccessService = (data) => {
     return axios.post(`/api/payment-success`, data)
 }
+const getHistoryTradePost = (data) => {
+    return axios.get(`/api/get-history-trade-post?limit=${data.limit}&offset=${data.offset}&fromDate=${data.fromDate}&toDate=${data.toDate}&companyId=${data.companyId}`)
+}
 //======================== PACKAGE Cv ====================================//
 
 const getAllPackageCv = (data) => {
@@ -278,6 +281,6 @@ export {
     createNewUser,handleLoginService,changePasswordByphone, checkUserPhoneService, getDetailUserById, UpdateUserService,handleChangePassword,BanUserService,UnbanUserService, getAllUsers,UpdateUserSettingService,
     createCompanyService,updateCompanyService, getListCompany, getDetailCompanyById, getAllCompany , accecptCompanyService, banCompanyService, unbanCompanyService,getDetailCompanyByUserId,RecruitmentService,getAllUserByCompanyIdService,QuitCompanyService,
     getListPostService,getDetailPostByIdService,banPostService,acceptPostService, getAllPostByAdminService,getAllPostByRoleAdminService,activePostService,getListNoteByPost, createPostService,updatePostService,reupPostService,
-    setActiveTypePackage, getAllPackage,getPackageById,createPackagePost,updatePackagePost,getPackageByType,getPaymentLink,paymentOrderSuccessService,
+    setActiveTypePackage, getAllPackage,getPackageById,createPackagePost,updatePackagePost,getPackageByType,getPaymentLink,paymentOrderSuccessService,getHistoryTradePost,
     getAllPackageCv,setActiveTypePackageCv, getPackageByIdCv,createPackageCv,updatePackageCv,getPaymentLinkCv,getAllToSelect,paymentOrderSuccessServiceCv,
 }
