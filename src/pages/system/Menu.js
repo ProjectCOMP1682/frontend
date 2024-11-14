@@ -117,8 +117,11 @@ const Sidebar = () => {
 
 
             <div className='flex items-center gap-[15px] py-[20px] border-b-[1px] border-[#EDEDED]/[0.3] cursor-pointer'>
+                <Link to="/admin/dashboard" className='flex items-center gap-[10px] py-[10px] cursor-pointer'>
+
                 <FaTachometerAlt color='white' />
                 {!isCollapsed && <p className='text-[14px] leading-[20px] font-bold text-white'>Dashboard</p>}
+                </Link>
             </div>
             {user && user.roleCode === "ADMIN" &&
                 <>
@@ -451,7 +454,7 @@ const Sidebar = () => {
 
                         </div>
                     )}
-                }
+
                     {
                         user.companyId &&(
                             <div className='flex items-center gap-[15px] py-[20px] border-b-[1px] border-[#EDEDED]/[0.3] cursor-pointer' onClick={toggleCompanyByCompany}>

@@ -220,6 +220,9 @@ const reupPostService = (data) => {
     return axios.post(`/api/create-reup-post`, data)
 
 }
+const getStatisticalTypePost = (limit) => {
+    return axios.get(`/api/get-statistical-post?limit=${limit}`)
+}
 
 //======================== PACKAGE ====================================//
 
@@ -283,7 +286,7 @@ export {
   getAllCodeService, getListJobTypeAndCountPost,getListAllCodeService,DeleteAllcodeService,createAllCodeService,  getDetailAllcodeByCode, UpdateAllcodeService,DeleteSkillService, getListSkill,createSkilleService,getDetailSkillById,UpdateSkillService,getAllSkillByJobCode,
     createNewUser,handleLoginService,changePasswordByphone, checkUserPhoneService, getDetailUserById, UpdateUserService,handleChangePassword,BanUserService,UnbanUserService, getAllUsers,UpdateUserSettingService,
     createCompanyService,updateCompanyService, getListCompany, getDetailCompanyById, getAllCompany , accecptCompanyService, banCompanyService, unbanCompanyService,getDetailCompanyByUserId,RecruitmentService,getAllUserByCompanyIdService,QuitCompanyService,
-    getListPostService,getDetailPostByIdService,banPostService,acceptPostService, getAllPostByAdminService,getAllPostByRoleAdminService,activePostService,getListNoteByPost, createPostService,updatePostService,reupPostService,
+    getListPostService,getDetailPostByIdService,banPostService,acceptPostService, getAllPostByAdminService,getAllPostByRoleAdminService,activePostService,getListNoteByPost, createPostService,updatePostService,reupPostService,getStatisticalTypePost,
     setActiveTypePackage, getAllPackage,getPackageById,createPackagePost,updatePackagePost,getPackageByType,getPaymentLink,paymentOrderSuccessService,getHistoryTradePost,
     getAllPackageCv,setActiveTypePackageCv, getPackageByIdCv,createPackageCv,updatePackageCv,getPaymentLinkCv,getAllToSelect,paymentOrderSuccessServiceCv,getHistoryTradeCv,
 }
