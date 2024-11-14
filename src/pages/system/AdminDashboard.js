@@ -55,41 +55,69 @@ const AdminDashboard = () => {
         }
         else toast.error(res.message)
     }
+    // Hàm để lấy ngày từ localStorage hoặc sử dụng giá trị mặc định nếu không có
+    const getSavedDates = () => {
+        const savedFromDate = localStorage.getItem('fromDate');
+        const savedToDate = localStorage.getItem('toDate');
 
-    let onDatePicker = async (values,type='') => {
-        let fromDate = formattedToday
-        let toDate = formattedToday
+        return savedFromDate && savedToDate ? [savedFromDate, savedToDate] : [null, null];
+    };
+    let onDatePicker = async (values, type = '') => {
+        let fromDate = "2000-01-01"; // Ngày mặc định nếu không có ngày chọn
+        let toDate = formattedToday;  // Ngày kết thúc mặc định là hôm nay
+
+        // Cập nhật lại ngày từ picker
         if (values) {
-            fromDate = values[0].format('YYYY-MM-DD')
-            toDate = values[1].format('YYYY-MM-DD')
+            fromDate = values[0].format('YYYY-MM-DD');
+            toDate = values[1].format('YYYY-MM-DD');
+            // Lưu trữ vào localStorage
+            localStorage.setItem('fromDate', fromDate);
+            localStorage.setItem('toDate', toDate);
+        } else {
+            let fromDate = "2000-01-01"; // Ngày mặc định nếu không có ngày chọn
+            let toDate = formattedToday;  // Ngày kết thúc mặc định là hôm nay
+            // Lưu trữ vào localStorage
+            localStorage.setItem('fromDate', fromDate);
+            localStorage.setItem('toDate', toDate);
         }
 
-            let arrData = await getStatisticalCv({
-                ...sendParams,
-                fromDate,
-                toDate,
-                offset: 0
-            })
-            if (arrData && arrData.errCode === 0) {
-                setDataCv(arrData.data)
-                setCount(Math.ceil(arrData.count / PAGINATION.pagerow))
-            }
+        try {
+            // Fetch data với khoảng thời gian đã chọn
 
-    }
+                let arrData = await getStatisticalCv({
+                    ...sendParams,
+                    fromDate,
+                    toDate,
+                    offset: 0
+                });
+                if (arrData && arrData.errCode === 0) {
+                    setDataCv(arrData.data);
+                    setCount(Math.ceil(arrData.count / PAGINATION.pagerow));
+                }
 
-    let handleChangePage = async (number,type='') => {
+        } catch (error) {
+            console.error("Error in onDatePicker:", error);
+        }
+    };
 
-            setnumberPage(number.selected)
+    let handleChangePage = async (number, type = '') => {
+        // Lấy ngày đã chọn từ localStorage
+        const [fromDate, toDate] = getSavedDates();
+
+
+            setnumberPage(number.selected);
             let arrData = await getStatisticalCv({
                 ...sendParams,
                 limit: PAGINATION.pagerow,
-                offset: number.selected * PAGINATION.pagerow
-            })
+                offset: number.selected * PAGINATION.pagerow,
+                fromDate,   // Đảm bảo ngày đã chọn được truyền vào
+                toDate      // Đảm bảo ngày đã chọn được truyền vào
+            });
             if (arrData && arrData.errCode === 0) {
-                setDataCv(arrData.data)
+                setDataCv(arrData.data);
             }
 
-    }
+    };
     useEffect(() => {
         const fetchData = async () => {
             const userData = JSON.parse(localStorage.getItem('userData'));
@@ -98,6 +126,34 @@ const AdminDashboard = () => {
         };
         fetchData();
     }, []);
+    useEffect(() => {
+        try {
+            let fetchData = async () => {
+                const userData = JSON.parse(localStorage.getItem('userData'));
+                const defaultFromDate = "2000-01-01";  // Default fromDate (can be changed to your desired start date)
+                const defaultToDate = formattedToday;  // Default toDate is today's date
+
+
+                    // Fetch data without date filtering or using default dates
+                    let arrData = await getStatisticalCv({
+                        ...sendParams,
+                        companyId: userData.companyId,
+                        fromDate: defaultFromDate,
+                        toDate: defaultToDate
+                    });
+
+                    if (arrData && arrData.errCode === 0) {
+                        setDataCv(arrData.data);
+                        setCount(Math.ceil(arrData.count / PAGINATION.pagerow));
+                    }
+
+            };
+
+            fetchData();
+        } catch (error) {
+            console.log(error);
+        }
+    }, []); // Runs only once on component mount
 
     return (
         <>
@@ -155,30 +211,30 @@ const AdminDashboard = () => {
                             <div className="card-body">
                                 <h4 className="text-xl font-semibold">CV quantity statistics</h4>
                                 <div className="mb-4">
-                                <RangePicker
-                                    onChange={onDatePicker}
-                                    format={'DD/MM/YYYY'}
-                                    className="mt-4 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 transition duration-300 ease-in-out"
-                                />
+                                    <RangePicker
+                                        onChange={onDatePicker}
+                                        format={'DD/MM/YYYY'}
+                                        className="mt-4 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 transition duration-300 ease-in-out"
+                                    />
                                 </div>
                                 <div className="overflow-x-auto pt-2">
                                     <table className="table w-full border border-gray-300">
                                         <thead>
                                         <tr className="bg-gray-100">
-                                        <th className="border border-gray-300 px-4 py-2">
-                                               No
+                                            <th className="border border-gray-300 px-4 py-2">
+                                                No
                                             </th>
-                                        <th className="border border-gray-300 px-4 py-2">
-                                            Post Name
+                                            <th className="border border-gray-300 px-4 py-2">
+                                                Post Name
                                             </th>
-                                        <th className="border border-gray-300 px-4 py-2">
-                                            Post code
+                                            <th className="border border-gray-300 px-4 py-2">
+                                                Post code
                                             </th>
-                                        <th className="border border-gray-300 px-4 py-2">
-                                            Posted by
+                                            <th className="border border-gray-300 px-4 py-2">
+                                                Posted by
                                             </th>
-                                        <th className="border border-gray-300 px-4 py-2">
-                                            Number of CVs
+                                            <th className="border border-gray-300 px-4 py-2">
+                                                Number of CVs
                                             </th>
                                         </tr>
                                         </thead>

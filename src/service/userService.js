@@ -253,6 +253,10 @@ const paymentOrderSuccessService = (data) => {
 const getHistoryTradePost = (data) => {
     return axios.get(`/api/get-history-trade-post?limit=${data.limit}&offset=${data.offset}&fromDate=${data.fromDate}&toDate=${data.toDate}&companyId=${data.companyId}`)
 }
+const getStatisticalPackagePost = (data) => {
+    return axios.get(`/api/get-statistical-package?limit=${data.limit}&offset=${data.offset}&fromDate=${data.fromDate}&toDate=${data.toDate}`)
+}
+
 //======================== PACKAGE Cv ====================================//
 
 const getAllPackageCv = (data) => {
@@ -282,11 +286,14 @@ const paymentOrderSuccessServiceCv = (data) => {
 const getHistoryTradeCv = (data) => {
     return axios.get(`/api/get-history-trade-cv?limit=${data.limit}&offset=${data.offset}&fromDate=${data.fromDate}&toDate=${data.toDate}&companyId=${data.companyId}`)
 }
+const getStatisticalPackageCv = (data) => {
+    return axios.get(`/api/get-statistical-package-cv?limit=${data.limit}&offset=${data.offset}&fromDate=${data.fromDate}&toDate=${data.toDate}`)
+}
 export {
   getAllCodeService, getListJobTypeAndCountPost,getListAllCodeService,DeleteAllcodeService,createAllCodeService,  getDetailAllcodeByCode, UpdateAllcodeService,DeleteSkillService, getListSkill,createSkilleService,getDetailSkillById,UpdateSkillService,getAllSkillByJobCode,
     createNewUser,handleLoginService,changePasswordByphone, checkUserPhoneService, getDetailUserById, UpdateUserService,handleChangePassword,BanUserService,UnbanUserService, getAllUsers,UpdateUserSettingService,
     createCompanyService,updateCompanyService, getListCompany, getDetailCompanyById, getAllCompany , accecptCompanyService, banCompanyService, unbanCompanyService,getDetailCompanyByUserId,RecruitmentService,getAllUserByCompanyIdService,QuitCompanyService,
     getListPostService,getDetailPostByIdService,banPostService,acceptPostService, getAllPostByAdminService,getAllPostByRoleAdminService,activePostService,getListNoteByPost, createPostService,updatePostService,reupPostService,getStatisticalTypePost,
-    setActiveTypePackage, getAllPackage,getPackageById,createPackagePost,updatePackagePost,getPackageByType,getPaymentLink,paymentOrderSuccessService,getHistoryTradePost,
-    getAllPackageCv,setActiveTypePackageCv, getPackageByIdCv,createPackageCv,updatePackageCv,getPaymentLinkCv,getAllToSelect,paymentOrderSuccessServiceCv,getHistoryTradeCv,
+    setActiveTypePackage, getAllPackage,getPackageById,createPackagePost,updatePackagePost,getPackageByType,getPaymentLink,paymentOrderSuccessService,getHistoryTradePost,getStatisticalPackagePost,
+    getAllPackageCv,setActiveTypePackageCv, getPackageByIdCv,createPackageCv,updatePackageCv,getPaymentLinkCv,getAllToSelect,paymentOrderSuccessServiceCv,getHistoryTradeCv,getStatisticalPackageCv,
 }
