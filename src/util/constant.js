@@ -3,5 +3,5 @@ export const dateFormat = {
 };
 
 export const PAGINATION = {
-    pagerow: 5,
+    pagerow: 100,
 }
