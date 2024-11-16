@@ -289,11 +289,18 @@ const getHistoryTradeCv = (data) => {
 const getStatisticalPackageCv = (data) => {
     return axios.get(`/api/get-statistical-package-cv?limit=${data.limit}&offset=${data.offset}&fromDate=${data.fromDate}&toDate=${data.toDate}`)
 }
+const getSumByYearPost = (year) => {
+    return axios.get(`/api/get-sum-by-year-post?year=${year}`)
+}
+
+const getSumByYearCv = (year) => {
+    return axios.get(`/api/get-sum-by-year-cv?year=${year}`)
+}
 export {
   getAllCodeService, getListJobTypeAndCountPost,getListAllCodeService,DeleteAllcodeService,createAllCodeService,  getDetailAllcodeByCode, UpdateAllcodeService,DeleteSkillService, getListSkill,createSkilleService,getDetailSkillById,UpdateSkillService,getAllSkillByJobCode,
     createNewUser,handleLoginService,changePasswordByphone, checkUserPhoneService, getDetailUserById, UpdateUserService,handleChangePassword,BanUserService,UnbanUserService, getAllUsers,UpdateUserSettingService,
     createCompanyService,updateCompanyService, getListCompany, getDetailCompanyById, getAllCompany , accecptCompanyService, banCompanyService, unbanCompanyService,getDetailCompanyByUserId,RecruitmentService,getAllUserByCompanyIdService,QuitCompanyService,
     getListPostService,getDetailPostByIdService,banPostService,acceptPostService, getAllPostByAdminService,getAllPostByRoleAdminService,activePostService,getListNoteByPost, createPostService,updatePostService,reupPostService,getStatisticalTypePost,
     setActiveTypePackage, getAllPackage,getPackageById,createPackagePost,updatePackagePost,getPackageByType,getPaymentLink,paymentOrderSuccessService,getHistoryTradePost,getStatisticalPackagePost,
-    getAllPackageCv,setActiveTypePackageCv, getPackageByIdCv,createPackageCv,updatePackageCv,getPaymentLinkCv,getAllToSelect,paymentOrderSuccessServiceCv,getHistoryTradeCv,getStatisticalPackageCv,
+    getAllPackageCv,setActiveTypePackageCv, getPackageByIdCv,createPackageCv,updatePackageCv,getPaymentLinkCv,getAllToSelect,paymentOrderSuccessServiceCv,getHistoryTradeCv,getStatisticalPackageCv,getSumByYearPost,getSumByYearCv,
 }

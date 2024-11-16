@@ -56,6 +56,8 @@ import FilterCv from "./pages/system/Cv/FilterCv";
 import DetailFilterUser from "./pages/system/Cv/DetailFilterUser";
 import HistoryTradePost from "./pages/system/HistoryTrade/HistoryTradePost";
 import HistoryTradeCv from "./pages/system/HistoryTrade/HistoryTradeCv";
+import ChartPost from "./pages/system/Chart/ChartPost";
+import ChartCv from "./pages/system/Chart/ChartCv";
 // browser router file
 const router = createBrowserRouter([
     {
@@ -292,6 +294,15 @@ const router = createBrowserRouter([
             {
                 path: "add-package-cv",
                 element: <AddPackageCv/> // Ví dụ một trang dashboard admin
+            },
+
+            {
+                path: "sum-by-year-post",
+                element: <ChartPost/> // Ví dụ một trang dashboard admin
+            },
+            {
+                path: "sum-by-year-cv",
+                element: <ChartCv/> // Ví dụ một trang dashboard admin
             },
             // Các route khác của admin ở đây
             //emloyee

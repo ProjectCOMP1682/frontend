@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {Link, NavLink} from 'react-router-dom';
-import { FaTachometerAlt, FaList,FaShoppingCart, FaCogs, FaChevronRight, FaChevronLeft, FaUsers ,FaUserPlus,FaBuilding,FaBriefcase,FaHistory ,FaClipboardList,FaAward, FaUserTie , FaPlus,FaTools,FaStar,FaRegNewspaper ,FaFileAlt,FaMoneyBillWave ,FaPlusCircle  } from "react-icons/fa";
+import { FaTachometerAlt, FaList,FaShoppingCart,FaChartBar, FaCogs, FaChevronRight, FaChevronLeft, FaUsers ,FaUserPlus,FaBuilding,FaBriefcase,FaHistory ,FaClipboardList,FaAward, FaUserTie , FaPlus,FaTools,FaStar,FaRegNewspaper ,FaFileAlt,FaMoneyBillWave ,FaPlusCircle  } from "react-icons/fa";
 
 
 const Sidebar = () => {
@@ -17,6 +17,7 @@ const Sidebar = () => {
     const [isExpTypeManagementOpen, setIsExpTypeManagementOpen] = useState(false);
     const [isPackagePostManagementOpen, setIsPackagePostManagementOpen] = useState(false);
     const [isPackageCVManagementOpen, setIsPackageCVManagementOpen] = useState(false);
+    const [isChartOpen, setIsChartOpen] = useState(false);
 // Company
     const [isCompanyByCompanyOpen, setIsCompanyByCompanyOpen] = useState(false);
     const [isPostByCompanyOpen, setIsPostByCompanyOpen] = useState(false);
@@ -89,6 +90,9 @@ const Sidebar = () => {
     const toggleCreateCompany = () => {
         setIsCreateCompanyOpen(!isCreateCompanyOpen);
     };
+    const toggleChart = () => {
+        setIsChartOpen(!isChartOpen);
+    };
     //company
     const toggleCompanyByCompany = () => {
         setIsCompanyByCompanyOpen(!isCompanyByCompanyOpen);
@@ -102,6 +106,7 @@ const Sidebar = () => {
     const toggleHistoryTradeByCompany = () => {
         setIsHistoryTradeByCompanyOpen(!isHistoryTradeByCompanyOpen);
     };
+
 
     return (
         <div className={`bg-[#9873FF] h-screen transition-width duration-300 ${isCollapsed ? 'w-[80px]' : 'w-[250px]'} px-[25px]`}>
@@ -118,17 +123,33 @@ const Sidebar = () => {
 
             <div className='flex items-center gap-[15px] py-[20px] border-b-[1px] border-[#EDEDED]/[0.3] cursor-pointer'>
                 <Link to="/admin/dashboard" className='flex items-center gap-[10px] py-[10px] cursor-pointer'>
-
                 <FaTachometerAlt color='white' />
                 {!isCollapsed && <p className='text-[14px] leading-[20px] font-bold text-white'>Dashboard</p>}
                 </Link>
             </div>
             {user && user.roleCode === "ADMIN" &&
                 <>
+                    <div className='flex items-center gap-[15px] py-[20px] border-b-[1px] border-[#EDEDED]/[0.3] cursor-pointer' onClick={toggleChart}>
+                        <FaChartBar  color='white' />
+                        {!isCollapsed && <p className='text-[14px] leading-[20px] font-bold text-white'>Revenue Graph</p>}
+                    </div>
+                    {/* User Management Tasks */}
+                    {isChartOpen && (
+                        <div className={`pl-[30px] transition-all duration-300 ${isCollapsed ? 'opacity-0' : 'opacity-100'}`}>
+                            <Link to="/admin/sum-by-year-post/" className='flex items-center gap-[10px] py-[10px] cursor-pointer'>
+                                <FaChartBar color='white' />
+                                {!isCollapsed && <p className='text-[14px] leading-[20px] font-normal text-white'>Post Package</p>}
+
+                            </Link>
+                            <Link to="/admin/sum-by-year-cv/" className='flex items-center gap-[10px] py-[10px] cursor-pointer'>
+                                <FaChartBar color='white' />
+                                {!isCollapsed && <p className='text-[14px] leading-[20px] font-normal text-white' >Candidate view package</p>}
+                            </Link>
+                        </div>
+                    )}
             <div className='flex items-center gap-[15px] py-[20px] border-b-[1px] border-[#EDEDED]/[0.3] cursor-pointer' onClick={toggleUserManagement}>
                 <FaUsers  color='white' />
                 {!isCollapsed && <p className='text-[14px] leading-[20px] font-bold text-white'>User Management</p>}
-                {!isCollapsed && (isUserManagementOpen ? <FaChevronLeft color='white' /> : <FaChevronRight color='white' />)}
             </div>
             {/* User Management Tasks */}
             {isUserManagementOpen && (
